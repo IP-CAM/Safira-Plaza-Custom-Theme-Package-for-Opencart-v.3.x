@@ -1,14 +1,14 @@
 {% if layout_type == "grid" %}
     {# Grid content #}
 	<div class="grid-style">
-		<div class="product-item">	
+		<div class="product-item">
 			<div class="image {% if rotate_image %}rotate-image-container{% endif %}">
-				
+
 				<a href="{{ href }}">
 					{% if rotate_image %}
-						<img {% if lazy_load %} data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} swiper-lazy {% endif %}" />
+						<img {% if lazy_load %} src="{{ loader_img }}" data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} lazyload {% endif %}" />
 					{% endif %}
-					<img {% if lazy_load %} data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="{% if lazy_load %} swiper-lazy {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
+					<img {% if lazy_load %} src="{{ loader_img }}" data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="{% if lazy_load %} lazyload {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
 					{% if swatches_images %}
 						<input type="hidden" value="{{ thumb }}" class="img-default-{{ section_id }}-{{ product_id }}" />
 						{% for s_image in swatches_images %}
@@ -16,12 +16,7 @@
 						{% endfor %}
 					{% endif %}
 				</a>
-				{% if lazy_load %}
-				<div class="swiper-lazy-preloader"></div>
-				{% endif %}
-				
-				
-				
+
 				{% if options %}
 					<div class="category-options product-options">
 					{% for option in options %}
@@ -40,18 +35,18 @@
 					{% endfor %}
 					</div>
 				{% endif %}
-				
+
 				{% if  show_compare or show_wishlist or show_quickview %}
 					<div class="button-group">
 						<div class="inner">
-							
+
 							{% if show_wishlist %}
 								<button type="button"  title="{{ button_wishlist }}" class="button-wishlist" onclick="wishlist.add('{{ product_id }}');"><span>{{ button_wishlist }}</span></button>
 							{% endif %}
 							{% if show_compare %}
 								<button type="button"  title="{{ button_compare }}" class="button-compare" onclick="compare.add('{{ product_id }}');"><span>{{ button_compare }}</span></button>
 							{% endif %}
-							
+
 							{% if show_quickview %}
 								<button type="button" title="{{ button_quickview }}" class="button-quickview" onclick="ptquickview.ajaxView('{{ href }}')"><span>{{ button_quickview }}</span></button>
 							{% endif %}
@@ -67,7 +62,7 @@
 						</p>
 					{% endif %}
 
-					
+
 					<h4><a href="{{ href }}">{{ name }}</a></h4>
 					{% if rating %}
 						<div class="rating">
@@ -107,8 +102,8 @@
 					{% if show_description and description %}
 						<p class="product-description">{{ description }}</p>
 					{% endif %}
-					
-					
+
+
 					{% if show_countdown and date_end %}
 						<div class="quantity-progress" >
 							<p class="product-available">{{ text_availabe }}<span>{{ quantity }}</span></p>
@@ -143,7 +138,7 @@
 						</div>
 					{% endif %}
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
@@ -152,14 +147,14 @@
 {% if layout_type == "list" %}
     {# List content #}
 	<div class="list-style">
-		<div class="product-item">	
+		<div class="product-item">
 			<div class="image {% if rotate_image %}rotate-image-container{% endif %}">
-				
+
 				<a href="{{ href }}">
 					{% if rotate_image %}
-						<img {% if lazy_load %} data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} swiper-lazy {% endif %}" />
+						<img {% if lazy_load %} src="{{ loader_img }}" data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} lazyload {% endif %}" />
 					{% endif %}
-					<img {% if lazy_load %} data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="{% if lazy_load %} swiper-lazy {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
+					<img {% if lazy_load %} src="{{ loader_img }}" data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="{% if lazy_load %} lazyload {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
 					{% if swatches_images %}
 						<input type="hidden" value="{{ thumb }}" class="img-default-{{ section_id }}-{{ product_id }}" />
 						{% for s_image in swatches_images %}
@@ -167,23 +162,20 @@
 						{% endfor %}
 					{% endif %}
 				</a>
-				{% if lazy_load %}
-				<div class="swiper-lazy-preloader"></div>
-				{% endif %}
-				
+
 				{% if  show_wishlist or show_compare or show_quickview  %}
 					<div class="button-group">
 						<div class="inner">
-							
-							
+
+
 							{% if show_wishlist %}
 								<button type="button"  title="{{ button_wishlist }}" class="button-wishlist" onclick="wishlist.add('{{ product_id }}');"><span>{{ button_wishlist }}</span></button>
 							{% endif %}
 							{% if show_compare %}
 								<button type="button"  title="{{ button_compare }}" class="button-compare" onclick="compare.add('{{ product_id }}');"><span>{{ button_compare }}</span></button>
 							{% endif %}
-							{% if show_quickview %}	
-								<button type="button" title="{{ button_quickview }}" class="button-quickview" onclick="ptquickview.ajaxView('{{ href }}')"><span>{{ button_quickview }}</span></button>						
+							{% if show_quickview %}
+								<button type="button" title="{{ button_quickview }}" class="button-quickview" onclick="ptquickview.ajaxView('{{ href }}')"><span>{{ button_quickview }}</span></button>
 							{% endif %}
 						</div>
 					</div>
@@ -214,8 +206,8 @@
 							<a href="{{ manufacturer_href }}">{{ manufacturer }}</a>
 						</p>
 					{% endif %}
-					
-					
+
+
 					<h4><a href="{{ href }}">{{ name }}</a></h4>
 					{% if rating %}
 						<div class="rating">
@@ -289,7 +281,7 @@
 						</div>
 					{% endif %}
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
@@ -298,7 +290,7 @@
 {% if layout_type == "other" %}
     {# Other content #}
 	<div class="other-style">
-		<div class="product-item">	
+		<div class="product-item">
 			{% if gallery_images %}
 				<div class="gallery-thumbs">
 					<div class="swiper-viewport">
@@ -307,7 +299,11 @@
 								{% for img in gallery_images %}
 									<div class="swiper-slide">
 										<a href="javascript:changeImg('{{ section_id }}', '{{ product_id }}', '{{ img.popup }}');" class="child-thumb" data-img="{{ img.popup }}">
-											<img src="{{ img.thumb }}" alt="{{ name[:20] ~ '...' }}"/>
+											{% if lazy_load %}
+												<img class="lazyload" src="{{ loader_img }}" data-src="{{ img.thumb }}" alt="{{ name[:20] ~ '...' }}"/>
+											{% else %}
+												<img src="{{ img.thumb }}" alt="{{ name[:20] ~ '...' }}"/>
+											{% endif %}
 										</a>
 									</div>
 								{% endfor %}
@@ -324,9 +320,9 @@
 				<div class="inner">
 					<a href="{{ href }}">
 						{% if rotate_image %}
-							<img {% if lazy_load %} data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} swiper-lazy {% endif %}" />
+							<img {% if lazy_load %} src="{{ loader_img }}" data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} lazyload {% endif %}" />
 						{% endif %}
-						<img {% if lazy_load %} data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="{% if lazy_load %} swiper-lazy {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
+						<img {% if lazy_load %} src="{{ loader_img }}" data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="{% if lazy_load %} lazyload {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
 						{% if swatches_images %}
 							<input type="hidden" value="{{ thumb }}" class="img-default-{{ section_id }}-{{ product_id }}" />
 							{% for s_image in swatches_images %}
@@ -334,9 +330,6 @@
 							{% endfor %}
 						{% endif %}
 					</a>
-					{% if lazy_load %}
-					<div class="swiper-lazy-preloader"></div>
-					{% endif %}
 					{% if options %}
 						<div class="category-options product-options">
 						{% for option in options %}
@@ -358,7 +351,7 @@
 					{% if  show_cart or show_compare or show_wishlist or show_quickview %}
 						<div class="button-group">
 							<div class="inner">
-								
+
 								{% if show_wishlist %}
 									<button type="button"  title="{{ button_wishlist }}" class="button-wishlist" onclick="wishlist.add('{{ product_id }}');"><span>{{ button_wishlist }}</span></button>
 								{% endif %}
@@ -393,7 +386,7 @@
 						</div>
 					{% endif %}
 					<h4><a href="{{ href }}">{{ name }}</a></h4>
-					
+
 					{% if show_price and price %}
 						<p class="price">
 							{% if not special %}
@@ -419,7 +412,7 @@
 					{% if show_description and description %}
 						<p>{{ description }}</p>
 					{% endif %}
-					
+
 					{% if show_countdown and date_end %}
 						<div class="quantity-progress" >
 							<p class="product-available">{{ text_availabe }}<span>{{ quantity }}</span></p>
@@ -452,39 +445,37 @@
 						</div>
 					{% endif %}
 				</div>
-				
+
 			</div>
 		</div>
-		<script>
-			var gallery_images = $(".gallery-images-{{ section_id }}-{{ product_id }}");
-			
-			$('.child-thumb').click(function(){
-				$('.child-thumb').removeClass('active');
-				$(this).addClass('active');
-			});
-			gallery_images.swiper({
-				spaceBetween: 0,
-				// nextButton: '.swiper-button-next-{{ section_id }}-{{ product_id }}',
-				// prevButton: '.swiper-button-prev-{{ section_id }}-{{ product_id }}',
-				speed: 500,
-				preloadImages: false,
-				watchSlidesVisibility: true,
-				slidesPerView: 3,
-				slidesPerColumn: 1,
-				direction: 'vertical',
-				breakpoints: {
-					414: {
-						slidesPerView: 4,
-						slidesPerColumn: 1
-					}
-				},
-				autoplay: false,
-				loop: false
-			});
-
-			function changeImg(section_id, product_id, popup) {
-				$('.other-style .img-mod-' + section_id + '-' + product_id).attr('src', popup);
-			}
-		</script>
 	</div>
+	<script type="text/javascript"><!--
+		var gallery_images = $(".gallery-images-{{ section_id }}-{{ product_id }}");
+
+		$('.child-thumb').click(function(){
+			$('.child-thumb').removeClass('active');
+			$(this).addClass('active');
+		});
+		gallery_images.swiper({
+			spaceBetween: 0,
+			speed: 500,
+			preloadImages: false,
+			watchSlidesVisibility: true,
+			slidesPerView: 3,
+			slidesPerColumn: 1,
+			direction: 'vertical',
+			breakpoints: {
+				414: {
+					slidesPerView: 4,
+					slidesPerColumn: 1
+				}
+			},
+			autoplay: false,
+			loop: false
+		});
+
+		function changeImg(section_id, product_id, popup) {
+			$('.other-style .img-mod-' + section_id + '-' + product_id).attr('src', popup);
+		}
+	//--></script>
 {% endif %}

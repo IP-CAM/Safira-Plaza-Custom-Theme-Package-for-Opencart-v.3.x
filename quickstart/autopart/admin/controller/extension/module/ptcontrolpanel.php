@@ -92,11 +92,63 @@ class ControllerExtensionModulePtcontrolpanel extends Controller
             'href' => $this->url->link('extension/module/ptcontrolpanel', 'user_token=' . $this->session->data['user_token'], true)
         );
 
-        $data['database'] = array(
-            DIR_APPLICATION . '../plazadata/plaza_db1.sql' => 'Layout Furniture 1',
-            DIR_APPLICATION . '../plazadata/plaza_db2.sql' => 'Layout Furniture 2',
-            DIR_APPLICATION . '../plazadata/plaza_db3.sql' => 'Layout Furniture 3',
-            DIR_APPLICATION . '../plazadata/plaza_db4.sql' => 'Layout Furniture 4'
+        if (!empty($_SERVER['HTTPS'])) {
+            // SSL connection
+            $common_url = HTTPS_CATALOG;
+        } else {
+            $common_url = HTTP_CATALOG;
+        }
+
+        $data['theme_directory'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_directory');
+
+        $data['layouts'] = array(
+            array(
+                'skin' => 1,
+                'directory' => 'tt_safira_autopart1',
+                'database' => DIR_APPLICATION . '../plazadata/plaza_db1.sql',
+                'title' => 'Layout Autopart 1',
+                'preview' => $common_url . 'image/plaza/preview/layout/autopart1.jpg'
+            ),
+            array(
+                'skin' => 2,
+                'directory' => 'tt_safira_autopart2',
+                'database' => DIR_APPLICATION . '../plazadata/plaza_db2.sql',
+                'title' => 'Layout Autopart 2',
+                'preview' => $common_url . 'image/plaza/preview/layout/autopart2.jpg'
+            ),
+            array(
+                'skin' => 3,
+                'directory' => 'tt_safira_autopart3',
+                'database' => DIR_APPLICATION . '../plazadata/plaza_db3.sql',
+                'title' => 'Layout Autopart 3',
+                'preview' => $common_url . 'image/plaza/preview/layout/autopart3.jpg'
+            ),
+            array(
+                'skin' => 4,
+                'directory' => 'tt_safira_autopart4',
+                'database' => DIR_APPLICATION . '../plazadata/plaza_db4.sql',
+                'title' => 'Layout Autopart 4',
+                'preview' => $common_url . 'image/plaza/preview/layout/autopart4.jpg'
+            ),
+        );
+
+        $data['headers'] = array(
+            array(
+                'value' => 1,
+                'preview' => $common_url . 'image/plaza/preview/header/autopart_header1.jpg'
+            ),
+            array(
+                'value' => 2,
+                'preview' => $common_url . 'image/plaza/preview/header/autopart_header2.jpg'
+            ),
+            array(
+                'value' => 3,
+                'preview' => $common_url . 'image/plaza/preview/header/autopart_header3.jpg'
+            ),
+            array(
+                'value' => 4,
+                'preview' => $common_url . 'image/plaza/preview/header/autopart_header4.jpg'
+            ),
         );
 
         $arrContextOptions = array(
@@ -152,6 +204,18 @@ class ControllerExtensionModulePtcontrolpanel extends Controller
             $data['module_ptcontrolpanel_lazy_load'] = $this->request->post['module_ptcontrolpanel_lazy_load'];
         } else {
             $data['module_ptcontrolpanel_lazy_load'] = $this->config->get('module_ptcontrolpanel_lazy_load');
+        }
+
+        if (isset($this->request->post['module_ptcontrolpanel_minify_js'])) {
+            $data['module_ptcontrolpanel_minify_js'] = $this->request->post['module_ptcontrolpanel_minify_js'];
+        } else {
+            $data['module_ptcontrolpanel_minify_js'] = $this->config->get('module_ptcontrolpanel_minify_js');
+        }
+
+        if (isset($this->request->post['module_ptcontrolpanel_minify_css'])) {
+            $data['module_ptcontrolpanel_minify_css'] = $this->request->post['module_ptcontrolpanel_minify_css'];
+        } else {
+            $data['module_ptcontrolpanel_minify_css'] = $this->config->get('module_ptcontrolpanel_minify_css');
         }
 
         if (isset($this->request->post['module_ptcontrolpanel_header_layout'])) {
@@ -705,6 +769,13 @@ class ControllerExtensionModulePtcontrolpanel extends Controller
                     }
                 }
             }
+
+            $this->load->model('plaza/controlpanel');
+            $this->model_plaza_controlpanel->refreshModifications();
+
+            $this->cache->delete('cache_folder');
+            $this->cache->delete('cache_mini_js_file_path');
+            $this->cache->delete('cache_mini_css_file_path');
 
             $this->session->data['success'] = $this->language->get('text_import_success');
 

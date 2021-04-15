@@ -730,6 +730,23 @@ class ControllerExtensionModulePtproducts extends Controller
             $this->document->addScript('catalog/view/javascript/plaza/swatches/swatches.js');
         }
 
+        $store_id = $this->config->get('config_store_id');
+
+        if (!empty($_SERVER['HTTPS'])) {
+            // SSL connection
+            $common_url = str_replace('http://', 'https://', $this->config->get('config_url'));
+        } else {
+            $common_url = $this->config->get('config_url');
+        }
+
+        if(isset($this->config->get('module_ptcontrolpanel_loader_img')[$store_id])) {
+            $data['loader_img'] = $common_url . 'image/' . $this->config->get('module_ptcontrolpanel_loader_img')[$store_id];
+        } else {
+            $data['loader_img'] = $common_url . 'image/plaza/ajax-loader.gif';;
+        }
+
+        $data['lazy_load'] = (int) $this->config->get('module_ptcontrolpanel_lazy_load')[$store_id];
+
         return $this->load->view('plaza/module/ptproducts', $data);
     }
 
@@ -751,7 +768,22 @@ class ControllerExtensionModulePtproducts extends Controller
     }
 
     public function getProductData($product_id, $params, $layout, $section_id) {
-		$store_id = $this->config->get('config_store_id');
+        $store_id = $this->config->get('config_store_id');
+
+        if (!empty($_SERVER['HTTPS'])) {
+            // SSL connection
+            $common_url = str_replace('http://', 'https://', $this->config->get('config_url'));
+        } else {
+            $common_url = $this->config->get('config_url');
+        }
+
+        if(isset($this->config->get('module_ptcontrolpanel_loader_img')[$store_id])) {
+            $data['loader_img'] = $common_url . 'image/' . $this->config->get('module_ptcontrolpanel_loader_img')[$store_id];
+        } else {
+            $data['loader_img'] = $common_url . 'image/plaza/ajax-loader.gif';;
+        }
+
+        $data['lazy_load'] = (int) $this->config->get('module_ptcontrolpanel_lazy_load')[$store_id];
 		
 		/* Lazy Load */
         if(isset($this->config->get('module_ptcontrolpanel_lazy_load')[$store_id])) {
@@ -933,6 +965,7 @@ class ControllerExtensionModulePtproducts extends Controller
                 'show_description'  => $params['show_description'],
                 'show_label'        => $params['show_label'],
 				'lazy_load'			=> $lazy_load,
+                'loader_img'        => $data['loader_img'],
                 'section_id'        => $section_id,
                 'layout_type'       => $layout,
                 'href'    	        => $this->url->link('product/product', 'product_id=' . $result['product_id'], true),

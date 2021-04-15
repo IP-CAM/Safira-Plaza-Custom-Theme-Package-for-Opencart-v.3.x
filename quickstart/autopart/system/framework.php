@@ -77,7 +77,11 @@ $registry->set('response', $response);
 
 // Database
 if ($config->get('db_autostart')) {
-	$registry->set('db', new DB($config->get('db_engine'), $config->get('db_hostname'), $config->get('db_username'), $config->get('db_password'), $config->get('db_database'), $config->get('db_port')));
+	$db = new DB($config->get('db_engine'), $config->get('db_hostname'), $config->get('db_username'), $config->get('db_password'), $config->get('db_database'), $config->get('db_port'));
+	$registry->set('db', $db);
+
+	// Sync PHP and DB time zones
+	$db->query("SET time_zone = '" . $db->escape(date('P')) . "'");
 }
 
 // Session
@@ -165,4 +169,10 @@ if ($config->has('action_pre_action')) {
 $route->dispatch(new Action($config->get('action_router')), new Action($config->get('action_error')));
 
 // Output
-$response->output();
+$minify = false;
+$cache = $registry->get('cache');
+$home_route = $cache->get('init_route');
+if($home_route == 'common/home') {
+    $minify = true;
+}
+$response->output($minify);

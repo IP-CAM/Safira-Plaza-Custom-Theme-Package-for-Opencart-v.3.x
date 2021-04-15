@@ -440,6 +440,23 @@ class ControllerExtensionModulePtmenu extends Controller
             'third_item_font_weight_hover'  => $setting['third_item_font_weight_hover'],
         );
 
+        $store_id = $this->config->get('config_store_id');
+
+        if (!empty($_SERVER['HTTPS'])) {
+            // SSL connection
+            $common_url = str_replace('http://', 'https://', $this->config->get('config_url'));
+        } else {
+            $common_url = $this->config->get('config_url');
+        }
+
+        if(isset($this->config->get('module_ptcontrolpanel_loader_img')[$store_id])) {
+            $data['loader_img'] = $common_url . 'image/' . $this->config->get('module_ptcontrolpanel_loader_img')[$store_id];
+        } else {
+            $data['loader_img'] = $common_url . 'image/plaza/ajax-loader.gif';;
+        }
+
+        $data['lazy_load'] = (int) $this->config->get('module_ptcontrolpanel_lazy_load')[$store_id];
+
         $this->document->addScript('catalog/view/javascript/plaza/ultimatemenu/menu.js');
 
         return $this->load->view('plaza/module/ptmenu', $data);

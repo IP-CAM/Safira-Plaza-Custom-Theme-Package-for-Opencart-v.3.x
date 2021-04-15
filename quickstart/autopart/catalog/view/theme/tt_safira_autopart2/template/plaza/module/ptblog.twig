@@ -18,8 +18,11 @@
 							<div class="post-grid">
 								<div class="post-item ">
 									<div class="post-image">
-										<a title="{{ post.name }}" href="{{ post.href }}"><img src="{{ post.image }}" alt="{{ post.name }}" /></a>
-										
+										{% if lazy_load %}
+											<a title="{{ post.name }}" href="{{ post.href }}"><img class="lazyload" width="{{ img_width }}" height="{{ img_height}}" src="{{ loader_img }}" data-src="{{ post.image }}" alt="{{ post.name }}" /></a>
+										{% else %}
+											<a title="{{ post.name }}" href="{{ post.href }}"><img src="{{ post.image }}" alt="{{ post.name }}" /></a>
+										{% endif %}
 									</div>
 									<div class="post-cation">
 										<div class="inner">
@@ -55,7 +58,7 @@
 	</div>
 </div>
 {% if posts %}
-    <script >
+	<script type="text/javascript"><!--
         $(".posts-container").swiper({
             spaceBetween: 0,
             {% if slide.pagination %}
@@ -72,7 +75,6 @@
 			watchSlidesVisibility: true,
             autoplay: {% if slide.auto %} 3000 {% else %} false {% endif %},
             loop: false,
-			// Responsive breakpoints
 			breakpoints: {
 				359: {
 				  slidesPerView: 1
@@ -93,5 +95,5 @@
 				}
 			}
         });
-    </script>
+    //--></script>
 {% endif %}

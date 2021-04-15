@@ -6,9 +6,9 @@
 				
 				<a href="{{ href }}">
 					{% if rotate_image %}
-						<img {% if lazy_load %} data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} swiper-lazy {% endif %}" />
+						<img {% if lazy_load %} src="{{ loader_img }}" data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} lazyload {% endif %}" />
 					{% endif %}
-					<img {% if lazy_load %} data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="{% if lazy_load %} swiper-lazy {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
+					<img {% if lazy_load %} src="{{ loader_img }}" data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="{% if lazy_load %} lazyload {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
 					{% if swatches_images %}
 						<input type="hidden" value="{{ thumb }}" class="img-default-{{ section_id }}-{{ product_id }}" />
 						{% for s_image in swatches_images %}
@@ -16,11 +16,6 @@
 						{% endfor %}
 					{% endif %}
 				</a>
-				{% if lazy_load %}
-				<div class="swiper-lazy-preloader"></div>
-				{% endif %}
-				
-				
 				
 				{% if options %}
 					<div class="category-options product-options">
@@ -157,9 +152,9 @@
 				
 				<a href="{{ href }}">
 					{% if rotate_image %}
-						<img {% if lazy_load %} data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} swiper-lazy {% endif %}" />
+						<img {% if lazy_load %} src="{{ loader_img }}" data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} lazyload {% endif %}" />
 					{% endif %}
-					<img {% if lazy_load %} data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="{% if lazy_load %} swiper-lazy {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
+					<img {% if lazy_load %} src="{{ loader_img }}" data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="{% if lazy_load %} lazyload {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
 					{% if swatches_images %}
 						<input type="hidden" value="{{ thumb }}" class="img-default-{{ section_id }}-{{ product_id }}" />
 						{% for s_image in swatches_images %}
@@ -167,9 +162,6 @@
 						{% endfor %}
 					{% endif %}
 				</a>
-				{% if lazy_load %}
-				<div class="swiper-lazy-preloader"></div>
-				{% endif %}
 				
 				{% if  show_wishlist or show_compare or show_quickview  %}
 					<div class="button-group">
@@ -307,7 +299,11 @@
 								{% for img in gallery_images %}
 									<div class="swiper-slide">
 										<a href="javascript:changeImg('{{ section_id }}', '{{ product_id }}', '{{ img.popup }}');" class="child-thumb" data-img="{{ img.popup }}">
-											<img src="{{ img.thumb }}" alt="{{ name[:20] ~ '...' }}"/>
+											{% if lazy_load %}
+												<img class="lazyload" src="{{ loader_img }}" data-src="{{ img.thumb }}" alt="{{ name[:20] ~ '...' }}"/>
+											{% else %}
+												<img src="{{ img.thumb }}" alt="{{ name[:20] ~ '...' }}"/>
+											{% endif %}
 										</a>
 									</div>
 								{% endfor %}
@@ -324,9 +320,9 @@
 				<div class="inner">
 					<a href="{{ href }}">
 						{% if rotate_image %}
-							<img {% if lazy_load %} data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} swiper-lazy {% endif %}" />
+							<img {% if lazy_load %} src="{{ loader_img }}" data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} lazyload {% endif %}" />
 						{% endif %}
-						<img {% if lazy_load %} data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="{% if lazy_load %} swiper-lazy {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
+						<img {% if lazy_load %} src="{{ loader_img }}" data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="{% if lazy_load %} lazyload {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
 						{% if swatches_images %}
 							<input type="hidden" value="{{ thumb }}" class="img-default-{{ section_id }}-{{ product_id }}" />
 							{% for s_image in swatches_images %}
@@ -334,9 +330,7 @@
 							{% endfor %}
 						{% endif %}
 					</a>
-					{% if lazy_load %}
-					<div class="swiper-lazy-preloader"></div>
-					{% endif %}
+
 					{% if options %}
 						<div class="category-options product-options">
 						{% for option in options %}
@@ -455,7 +449,7 @@
 				
 			</div>
 		</div>
-		<script>
+		<script type="text/javascript"><!--
 			var gallery_images = $(".gallery-images-{{ section_id }}-{{ product_id }}");
 			
 			$('.child-thumb').click(function(){
@@ -464,8 +458,6 @@
 			});
 			gallery_images.swiper({
 				spaceBetween: 0,
-				// nextButton: '.swiper-button-next-{{ section_id }}-{{ product_id }}',
-				// prevButton: '.swiper-button-prev-{{ section_id }}-{{ product_id }}',
 				speed: 500,
 				preloadImages: false,
 				watchSlidesVisibility: true,
@@ -485,6 +477,6 @@
 			function changeImg(section_id, product_id, popup) {
 				$('.other-style .img-mod-' + section_id + '-' + product_id).attr('src', popup);
 			}
-		</script>
+		//--></script>
 	</div>
 {% endif %}

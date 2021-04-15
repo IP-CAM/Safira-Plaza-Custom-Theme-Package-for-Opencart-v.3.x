@@ -1,10 +1,10 @@
 $(document).ready(function () {
     var current_url = window.location.href;
-    
+
     if(current_url.indexOf('common/home') >= 0) {
         $('.home-link').addClass('active');
     }
-    
+
     $('.pt-menu .li-top-item .a-top-link').each(function () {
         var link = $(this).attr('href');
         if(current_url == link) {
@@ -305,4 +305,4 @@ $(document).ready(function () {
     } else {
 
     }
-})
+});

@@ -5,9 +5,17 @@
             <div class="image {% if rotate_image %}rotate-image-container{% endif %}">
                 <a href="{{ href }}">
                     {% if rotate_image %}
-                        <img  src="{{ rotate_image }}"   alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-rotate-image " />
+                        {% if lazy_load %}
+                            <img src="{{ loader_img }}" data-src="{{ rotate_image }}" alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-rotate-image lazyload" />
+                        {% else %}
+                            <img src="{{ rotate_image }}" alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-rotate-image " />
+                        {% endif %}
                     {% endif %}
-                    <img src="{{ thumb }}"  alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
+                    {% if lazy_load %}
+                        <img src="{{ loader_img }}" data-src="{{ thumb }}" alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-mod-{{ section_id }}-{{ product_id }} lazyload" />
+                    {% else %}
+                        <img src="{{ thumb }}" alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
+                    {% endif %}
                     {% if swatches_images %}
                         <input type="hidden" value="{{ thumb }}" class="img-default-{{ section_id }}-{{ product_id }}" />
                         {% for s_image in swatches_images %}
@@ -31,7 +39,11 @@
                                     {% for img in gallery_images %}
                                         <div class="swiper-slide">
                                             <a href="javascript:changeImg('{{ section_id }}', '{{ product_id }}', '{{ img.popup }}');" class="child-thumb" data-img="{{ img.popup }}">
-                                                <img src="{{ img.thumb }}" alt="{{ name[:20] ~ '...' }}"/>
+                                                {% if lazy_load %}
+                                                    <img class="lazyload" src="{{ loader_img }}" data-src="{{ img.thumb }}" alt="{{ name[:20] ~ '...' }}"/>
+                                                {% else %}
+                                                    <img src="{{ img.thumb }}" alt="{{ name[:20] ~ '...' }}"/>
+                                                {% endif %}
                                             </a>
                                         </div>
                                     {% endfor %}
@@ -160,8 +172,6 @@
 		});
         gallery_images.swiper({
             spaceBetween: 0,
-            // nextButton: '.swiper-button-next-{{ section_id }}-{{ product_id }}',
-            // prevButton: '.swiper-button-prev-{{ section_id }}-{{ product_id }}',
             speed: 500,
             preloadImages: false,
             watchSlidesVisibility: true,

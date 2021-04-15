@@ -74,6 +74,7 @@
                             <div class="col-md-3 col-left">
                                 <ul class="nav nav-tabs menu-sections">
                                     <li class="active"><a href="#tab-general" data-toggle="tab"><i class="fa fa-tachometer" aria-hidden="true"></i>{{ tab_general }}</a></li>
+                                    <li><a href="#tab-skin" data-toggle="tab"><i class="fa fa-eye" aria-hidden="true"></i>{{ tab_skin }}</a></li>
                                     <li><a href="#tab-font" data-toggle="tab"><i class="fa fa-font" aria-hidden="true"></i>{{ tab_font }}</a></li>
                                     <li><a href="#tab-catalog" data-toggle="tab"><i class="fa fa-shopping-bag" aria-hidden="true"></i>{{ tab_catalog }}</a></li>
                                     <li><a href="#tab-product" data-toggle="tab"><i class="fa fa-cube" aria-hidden="true"></i>{{ tab_product }}</a></li>
@@ -93,24 +94,42 @@
                                                 {% for store in stores %}
                                                     <div class="frm-field frm-field-{{ store.store_id }}">
                                                         <div class="form-group">
-                                                            <label class="col-sm-4 control-label">{{ entry_header }}</label>
-                                                            <div class="col-sm-6">
-                                                                <select name="module_ptcontrolpanel_header_layout[{{ store.store_id }}]" class="form-control">
-                                                                    <option value="1" {% if module_ptcontrolpanel_header_layout[store.store_id] == '1' %} selected="selected" {% endif %}>{{ entry_header }} 1</option>
-                                                                    <option value="2" {% if module_ptcontrolpanel_header_layout[store.store_id] == '2' %} selected="selected" {% endif %}>{{ entry_header }} 2</option>
-                                                                    <option value="3" {% if module_ptcontrolpanel_header_layout[store.store_id] == '3' %} selected="selected" {% endif %}>{{ entry_header }} 3</option>
-                                                                    <option value="4" {% if module_ptcontrolpanel_header_layout[store.store_id] == '4' %} selected="selected" {% endif %}>{{ entry_header }} 4</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
                                                             <label class="col-sm-4 control-label">{{ entry_responsive }}</label>
                                                             <div class="col-sm-6">
                                                                 <select name="module_ptcontrolpanel_responsive_type[{{ store.store_id }}]" class="form-control">
                                                                     <option value="responsive" {% if module_ptcontrolpanel_responsive_type[store.store_id] == 'responsive' %} selected="selected" {% endif %}>{{ text_responsive_layout }}</option>
                                                                     <option value="specified" {% if module_ptcontrolpanel_responsive_type[store.store_id] == 'specified' %} selected="selected" {% endif %}>{{ text_specified_layout }}</option>
                                                                 </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="col-sm-4 control-label">{{ entry_lazy_load }}</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="hidden" name="module_ptcontrolpanel_lazy_load[{{ store.store_id }}]" value="0" />
+                                                                <input type="checkbox" class="ckb-switch" name="module_ptcontrolpanel_lazy_load[{{ store.store_id }}]"
+                                                                       data-toggle="toggle" data-on="{{ text_enabled }}" data-off="{{ text_disabled }}" data-width="100" data-height="36"
+                                                                        {% if module_ptcontrolpanel_lazy_load[store.store_id] %} value="1" checked {% else %} value="0" {% endif %}>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="col-sm-4 control-label">{{ entry_minify_js }}</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="hidden" name="module_ptcontrolpanel_minify_js[{{ store.store_id }}]" value="0" />
+                                                                <input type="checkbox" class="ckb-switch" name="module_ptcontrolpanel_minify_js[{{ store.store_id }}]"
+                                                                       data-toggle="toggle" data-on="{{ text_enabled }}" data-off="{{ text_disabled }}" data-width="100" data-height="36"
+                                                                        {% if module_ptcontrolpanel_minify_js[store.store_id] %} value="1" checked {% else %} value="0" {% endif %}>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="col-sm-4 control-label">{{ entry_minify_css }}</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="hidden" name="module_ptcontrolpanel_minify_css[{{ store.store_id }}]" value="0" />
+                                                                <input type="checkbox" class="ckb-switch" name="module_ptcontrolpanel_minify_css[{{ store.store_id }}]"
+                                                                       data-toggle="toggle" data-on="{{ text_enabled }}" data-off="{{ text_disabled }}" data-width="100" data-height="36"
+                                                                        {% if module_ptcontrolpanel_minify_css[store.store_id] %} value="1" checked {% else %} value="0" {% endif %}>
                                                             </div>
                                                         </div>
 
@@ -135,20 +154,55 @@
                                                         </div>
 
                                                         <div class="form-group">
-                                                            <label class="col-sm-4 control-label">{{ entry_lazy_load }}</label>
-                                                            <div class="col-sm-6">
-                                                                <input type="hidden" name="module_ptcontrolpanel_lazy_load[{{ store.store_id }}]" value="0" />
-                                                                <input type="checkbox" class="ckb-switch" name="module_ptcontrolpanel_lazy_load[{{ store.store_id }}]"
-                                                                       data-toggle="toggle" data-on="{{ text_enabled }}" data-off="{{ text_disabled }}" data-width="100" data-height="36"
-                                                                        {% if module_ptcontrolpanel_lazy_load[store.store_id] %} value="1" checked {% else %} value="0" {% endif %}>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
                                                             <label class="col-sm-4 control-label">{{ entry_loader_image }}</label>
                                                             <div class="col-sm-6">
                                                                 <a href="" id="thumb-image{{ store.store_id }}" data-toggle="image" class="img-thumbnail"><img src="{{ thumb[store.store_id] }}" alt="" title=""  /></a>
                                                                 <input type="hidden" id="input-image{{ store.store_id }}" name="module_ptcontrolpanel_loader_img[{{ store.store_id }}]" value="{{ module_ptcontrolpanel_loader_img[store.store_id] }}" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+
+                                            <div class="tab-pane" id="tab-skin">
+                                                {% for store in stores %}
+                                                    <div class="frm-field frm-field-{{ store.store_id }}">
+                                                        <ul class="nav nav-tabs hoz-ul-sections">
+                                                            <li class="active"><a href="#tab-layout-{{ store.store_id }}" data-toggle="tab">{{ tab_layout }}</a></li>
+                                                            <li><a href="#tab-header-{{ store.store_id }}" data-toggle="tab">{{ tab_header }}</a></li>
+                                                        </ul>
+
+                                                        <div class="tab-content child-content">
+                                                            <div class="tab-pane active" id="tab-layout-{{ store.store_id }}">
+                                                                <div class="form-group">
+                                                                    {% for layout in layouts %}
+                                                                        <div class="col-sm-6 box-skin {% if theme_directory == layout.directory %} active {% endif %}">
+                                                                            <input type="hidden" value="{{ layout.database }}" />
+                                                                            <img src="{{ layout.preview }}" alt="{{ layout.title }}" />
+                                                                            <p class="title">{{ layout.title }}</p>
+                                                                            {% if theme_directory == layout.directory %}
+                                                                                <span class="btn-default status">{{ button_activated }}</span>
+                                                                            {% else %}
+                                                                                <button type="button" class="btn btn-primary btn-theme-option button-import" onclick="skin_import('{{ layout.database }}')">{{ button_activate }}</button>
+                                                                            {% endif %}
+                                                                        </div>
+                                                                    {% endfor %}
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="tab-pane" id="tab-header-{{ store.store_id }}">
+                                                                <div class="form-group">
+                                                                    {% for header in headers %}
+                                                                        <div class="col-sm-12 header-option">
+                                                                            <input class="rd-header-option" type="radio" name="module_ptcontrolpanel_header_layout[{{ store.store_id }}]"
+                                                                                   value="{{ header.value }}" id="header-option-{{ header.value }}" {% if module_ptcontrolpanel_header_layout[store.store_id] == header.value %} checked="checked" {% endif %} />
+                                                                            <label class="lb-header-option {% if module_ptcontrolpanel_header_layout[store.store_id] == header.value %} active {% endif %}" for="header-option-{{ header.value }}">
+                                                                                <img class="img-responsive" src="{{ header.preview }}" alt="{{ entry_header }} {{ header.value }}" />
+                                                                            </label>
+                                                                            <p class="title">{{ entry_header }} {{ header.value }}</p>
+                                                                        </div>
+                                                                    {% endfor %}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -225,7 +279,7 @@
                                                                         <input class="form-control jscolor" type="text" name="module_ptcontrolpanel_body_color[{{ store.store_id }}]" value="{{ module_ptcontrolpanel_body_color[store.store_id] }}" />
                                                                     </div>
                                                                 </div>
-																
+
 																<div class="form-group">
                                                                     <label class="col-sm-3 control-label">{{ entry_primary_color }}</label>
                                                                     <div class="col-sm-3">
@@ -287,8 +341,8 @@
                                                                         <input class="form-control jscolor" type="text" name="module_ptcontrolpanel_heading_color[{{ store.store_id }}]" value="{{ module_ptcontrolpanel_heading_color[store.store_id] }}" />
                                                                     </div>
                                                                 </div>
-																
-																
+
+
                                                             </div>
 
                                                             <div class="tab-pane" id="tab-link-{{ store.store_id }}">
@@ -299,7 +353,7 @@
                                                                     </div>
                                                                 </div>
 
-                                                                
+
                                                             </div>
 
                                                             <div class="tab-pane" id="tab-button-{{ store.store_id }}">
@@ -718,24 +772,6 @@
                                             <div class="tab-pane" id="tab-advance">
                                                 {% for store in stores %}
                                                     <div class="frm-field frm-field-{{ store.store_id }}">
-                                                        <div class="form-group" style="display:none;">
-                                                            <label class="col-sm-3 control-label" for="input-theme">{{ entry_theme_database }}</label>
-                                                            <div class="col-sm-9">
-                                                                <div class="row">
-                                                                    <div class="col-sm-6">
-                                                                        <select id="input-theme" class="form-control" name="file">
-                                                                            {% for key, value in database %}
-                                                                                <option value="{{ key }}">{{ value }}</option>
-                                                                            {% endfor %}
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <button type="button" id="button-import" class="btn btn-primary btn-theme-option"><i class="fa fa-upload"></i> {{ button_import }}</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
                                                         <div class="form-group">
                                                             <label class="col-sm-3 control-label" for="input-theme">{{ entry_custom_css }}</label>
                                                             <div class="col-sm-9">
@@ -774,7 +810,7 @@
             $('.frm-field').hide();
             var store = $(this).val();
             $('.frm-field-' + store).show();
-        })
+        });
 
 
         $('.toggle.btn').on('click', function () {
@@ -856,14 +892,17 @@
     function chooseHeadingWeight(value, store_id) {
         $('.font-heading-demo-' + store_id).css("font-weight", value);
     }
-</script>
 
-<script type="text/javascript"><!--
-    $('#button-import').on('click', function() {
-
-        $('#form-data input[name=\'file\']').val($('#input-theme').val());
+    function skin_import(database) {
+        $('#form-data input[name=\'file\']').val(database);
 
         $('#form-data').submit();
+    }
+
+    $('input[class=\'rd-header-option\']').on('change', function () {
+        var header_chosen = $(this).attr('id');
+        $('.lb-header-option').removeClass('active');
+        $('#' + header_chosen).closest('.header-option').find('.lb-header-option').addClass('active');
     });
-    //--></script>
+</script>
 {{ footer }}

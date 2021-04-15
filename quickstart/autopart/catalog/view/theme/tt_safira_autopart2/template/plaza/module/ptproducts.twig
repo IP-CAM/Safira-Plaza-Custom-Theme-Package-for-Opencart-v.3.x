@@ -20,7 +20,13 @@
 						<a href="javascript:void(0);" data-tab="#tab-product-{{ module_id }}-{{ tab_count }}">
 							{% if tab.title_image %}
 								<div class="image-thumb">
-									<span><img src="{{ tab.title_image }}" alt="{{ tab.title }}" /></span>
+									<span>
+                                        {% if lazy_load %}
+                                            <img class="lazyload" src="{{ loader_img }}" data-src="{{ tab.title_image }}" alt="{{ tab.title }}" />
+                                        {% else %}
+                                            <img src="{{ tab.title_image }}" alt="{{ tab.title }}" />
+                                        {% endif %}
+                                    </span>
 								</div>
 							{% endif %}
 							<span>{{ tab.title }}</span>
@@ -103,12 +109,20 @@
 									<div class="pt-block">
 										<div class="image">
 											<a href="{{ single_image_link }}">
-												<img src="{{ single_image }}" alt="" />
+                                                {% if lazy_load %}
+                                                    <img class="lazyload" src="{{ loader_img }}" data-src="{{ single_image }}" alt="" />
+                                                {% else %}
+                                                    <img src="{{ single_image }}" alt="" />
+                                                {% endif %}
 											</a>
 										</div>
 									</div>
                                 {% else %}
-                                    <img src="{{ single_image }}" alt="" />
+                                    {% if lazy_load %}
+                                        <img class="lazyload" src="{{ loader_img }}" data-src="{{ single_image }}" alt="" />
+                                    {% else %}
+                                        <img src="{{ single_image }}" alt="" />
+                                    {% endif %}
                                 {% endif %}
                             </div>
                         </div>
@@ -268,12 +282,20 @@
                                             <div class="pt-block">
 												<div class="image">
 													<a href="{{ tab.image['link'] }}">
-														<img src="{{ tab.image['src'] }}" alt="{{ tab.image['link'] }}" />
+                                                        {% if lazy_load %}
+                                                            <img class="lazyload" src="{{ loader_img }}" data-src="{{ tab.image['src'] }}" alt="{{ tab.image['link'] }}" />
+                                                        {% else %}
+                                                            <img src="{{ tab.image['src'] }}" alt="{{ tab.image['link'] }}" />
+                                                        {% endif %}
 													</a>
 												</div>
 											</div>
                                         {% else %}
-                                            <img src="{{ tab.image['src'] }}" alt="{{ tab.image['link'] }}" />
+                                            {% if lazy_load %}
+                                                <img class="lazyload" src="{{ loader_img }}" data-src="{{ tab.image['src'] }}" alt="{{ tab.image['link'] }}" />
+                                            {% else %}
+                                                <img src="{{ tab.image['src'] }}" alt="{{ tab.image['link'] }}" />
+                                            {% endif %}
                                         {% endif %}
                                     </div>
                                 </div>

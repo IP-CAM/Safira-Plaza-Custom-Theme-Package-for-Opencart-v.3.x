@@ -10,11 +10,14 @@
                     <div class="swiper-wrapper">
                         {% for category in categories %}
                             <div class="swiper-slide product-thumb">
-								
 									<div class="category-content">
 										{% if use_second_img %}
 											<div class="image">
-												<a href="{{ category.href }}"><img src="{{ category.secondary_image }}" alt="{{ category.name }}" /></a>
+												{% if lazy_load %}
+													<a href="{{ category.href }}"><img class="lazyload" src="{{ loader_img }}" data-src="{{ category.secondary_image }}" alt="{{ category.name }}" /></a>
+												{% else %}
+													<a href="{{ category.href }}"><img src="{{ category.secondary_image }}" alt="{{ category.name }}" /></a>
+												{% endif %}
 											</div>
 										{% endif %}
 										<div class="caption">
@@ -75,7 +78,6 @@
 						watchSlidesVisibility: true,
                         autoplay: {% if slide_settings.autoplay %} 3000 {% else %} false {% endif %},
                         loop: false,
-						// Responsive breakpoints
 							breakpoints: {
 								359: {
 								  slidesPerView: 1
@@ -128,7 +130,11 @@
 						</div>
 						{% if use_second_img %}
 							<div class="image">
-								<img src="{{ category.secondary_image }}" alt="{{ category.name }}" />
+								{% if lazy_load %}
+									<img class="lazyload" src="{{ loader_img }}" data-src="{{ category.secondary_image }}" alt="{{ category.name }}" />
+								{% else %}
+									<img src="{{ category.secondary_image }}" alt="{{ category.name }}" />
+								{% endif %}
 							</div>
                         {% endif %}
                     </div>

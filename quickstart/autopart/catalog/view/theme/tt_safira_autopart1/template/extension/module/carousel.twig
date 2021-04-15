@@ -3,10 +3,25 @@
 		<div class="swiper-viewport">
 		  <div id="carousel{{ module }}" class="swiper-container">
 			<div class="swiper-wrapper">{% for banner in banners %}
-			  <div class="swiper-slide text-center">{% if banner.link %}<a href="{{ banner.link }}"><img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" /></a>{% else %}<img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />{% endif %}</div>
+			  <div class="swiper-slide text-center">
+				  {% if banner.link %}
+				  <a href="{{ banner.link }}">
+					  {% if lazy_load %}
+						  <img src="{{ loader_img }}" data-src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive lazyload" />
+					  {% else %}
+						  <img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />
+					  {% endif %}
+				  </a>
+				  {% else %}
+					  {% if lazy_load %}
+						  <img src="{{ loader_img }}" data-src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive lazyload" />
+					  {% else %}
+						  <img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />
+					  {% endif %}
+				  {% endif %}
+			  </div>
 			  {% endfor %}</div>
 		  </div>
-		  <!--div class="swiper-pagination carousel{{ module }}"></div-->
 		  <div class="swiper-pager">
 			<div class="swiper-button-next brand-logo-next"></div>
 			<div class="swiper-button-prev brand-logo-prev"></div>
@@ -14,7 +29,7 @@
 		</div>
 	</div>
 </div>
-<script ><!--
+<script type="text/javascript"><!--
 $('#carousel{{ module }}').swiper({
 	mode: 'horizontal',
 	slidesPerView: 5,
@@ -25,7 +40,6 @@ $('#carousel{{ module }}').swiper({
 	watchSlidesVisibility: true,
 	autoplay: false,
 	loop: true,
-	// Responsive breakpoints
 	breakpoints: {
 		479: {
 		  slidesPerView: 2
@@ -35,12 +49,10 @@ $('#carousel{{ module }}').swiper({
 		},
 		991: {
 		  slidesPerView: 3
-		  
 		},
 		1199: {
 		  slidesPerView: 4
-		  
 		}
 	}
 });
---></script>
+//--></script>

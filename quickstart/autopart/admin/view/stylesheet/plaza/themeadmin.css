@@ -278,7 +278,6 @@
     margin-top: 5px;
     font-size: 13px;
     line-height: 1.42857;
-    display:;
     color: #555;
     background-color: #fff;
     background-image: none;
@@ -335,4 +334,62 @@
 .btn-add-tab:hover {
     color: #eb5202;
     border-color: #19222e;
+}
+.box-skin {
+    text-align: center;
+    padding-bottom: 20px;
+}
+.box-skin img {
+    opacity: 0.4;
+}
+.box-skin.active img {
+    opacity: 1;
+}
+.box-skin .title {
+    margin: 10px 0;
+    font-size:16px;
+}
+.box-skin.active .title {
+    font-weight: bold;
+}
+.box-skin .status {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    white-space: nowrap;
+    padding: 8px 13px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #fff;
+    background-color: #31b505;
+}
+.header-option {
+    margin-bottom: 20px;
+    text-align:center;
+}
+.header-option .title {
+    font-size: 14px;
+    font-weight: bold;
+}
+.header-option .rd-header-option {
+    display: none;
+}
+.header-option .lb-header-option {
+    margin-bottom: 10px;
+}
+.header-option .lb-header-option img {
+    border: 2px solid #e9e9e9;
+    padding: 5px;
+    opacity: 0.5;
+}
+.header-option .lb-header-option.active img {
+    border-color: #31b505;
+    opacity: 1;
 }

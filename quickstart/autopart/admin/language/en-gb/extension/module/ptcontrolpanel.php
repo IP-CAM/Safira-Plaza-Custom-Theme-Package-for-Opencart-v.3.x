@@ -44,11 +44,17 @@ $_['tab_module']           = 'Module';
 $_['tab_custom_css']       = 'Custom CSS';
 $_['tab_custom_js']        = 'Custom Javascript';
 $_['tab_data']             = 'Data Storage';
+$_['tab_skin']             = 'Skin';
+$_['tab_layout']           = 'Layout';
+$_['tab_header']           = 'Header';
+$_['tab_footer']           = 'Footer';
 
 // Entry
 $_['entry_header']         = 'Header';
 $_['entry_responsive']     = 'Responsive Type';
-$_['entry_lazy_load']      = 'Products Lazy Load';
+$_['entry_lazy_load']      = 'Lazy Load';
+$_['entry_minify_js']      = 'Minify JavaScript';
+$_['entry_minify_css']     = 'Minify Stylesheet CSS';
 $_['entry_sticky_header']  = 'Sticky Header';
 $_['entry_scroll_top']     = 'Scroll Top Button';
 $_['entry_store']          = 'Choose Store';
@@ -102,6 +108,10 @@ $_['entry_show_options']   = 'Show Options';
 $_['entry_product_des']    = 'Product Description';
 $_['entry_custom_css']     = 'Customize Stylesheet';
 $_['entry_custom_js']      = 'Customize Javascript';
+
+// Button
+$_['button_activate']      = "Activate";
+$_['button_activated']     = "Activated";
 
 //Error
 $_['error_permission']     = 'Warning: You do not have permission to modify Plaza Theme!';

@@ -23,6 +23,40 @@ function getURLVar(key) {
 }
 
 $(document).ready(function() {
+	// Scroll Top
+	let scrollTop = parseInt($('#hd-check-scroll-top').val());
+	if(scrollTop === 1) {
+		$("#back-top").hide();
+		$(function () {
+			$(window).scroll(function () {
+				if ($(this).scrollTop() > $('body').height()/3) {
+					$('#back-top').fadeIn();
+				} else {
+					$('#back-top').fadeOut();
+				}
+			});
+			$('#back-top').click(function () {
+				$('body,html').animate({scrollTop: 0}, 800);
+				return false;
+			});
+		});
+	}
+
+	// Sticky Header
+	let stickyHeader = parseInt($('#hd-check-sticky-header').val());
+	if(stickyHeader === 1) {
+		let height_box_scroll = $('.scroll-fix').outerHeight(true);
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 800) {
+				$('.scroll-fix').addClass("scroll-fixed");
+				$('body').css('padding-top',height_box_scroll);
+			} else {
+				$('.scroll-fix').removeClass("scroll-fixed");
+				$('body').css('padding-top',0);
+			}
+		});
+	}
+
 	$('.product-thumb .product-item').hover(
 		function(){
 			$(this).closest('.products-container').addClass('item-hover');
@@ -40,7 +74,7 @@ $(document).ready(function() {
 		}
 	);
 	// Custom move breadcrumb by Plazathemes
-	$("body:not(.common-home) header").after('<div class="breadcrumbs"><div class="container"><div class="container-inner"></div></div></div>');	
+	$("body:not(.common-home) header").after('<div class="breadcrumbs"><div class="container"><div class="container-inner"></div></div></div>');
 	var breadcrumb = $('body ul.breadcrumb');
 	var breadcrumbs = $('.breadcrumbs');
 	var breadcrumbs_container = $('.breadcrumbs .container .container-inner');
@@ -50,7 +84,7 @@ $(document).ready(function() {
 	page_title_h1.appendTo(breadcrumbs_container);
 	breadcrumb.appendTo(breadcrumbs_container);
 	//category_image.appendTo(breadcrumbs);
-	
+
 	// Highlight any found errors
 	$('.text-danger').each(function() {
 		var element = $(this).parent().parent();
@@ -117,7 +151,7 @@ $(document).ready(function() {
 		$('#grid-view').removeClass('active');
 		$('#list-view').addClass('active');
 		$(".product-thumb .product-item").each(function() {
-			
+
 		});
 		localStorage.setItem('display', 'list');
 	});
@@ -138,7 +172,7 @@ $(document).ready(function() {
 		$('#list-view').removeClass('active');
 		$('#grid-view').addClass('active');
 		$(".product-thumb .product-item").each(function() {
-			
+
 		});
 		localStorage.setItem('display', 'grid');
 	});

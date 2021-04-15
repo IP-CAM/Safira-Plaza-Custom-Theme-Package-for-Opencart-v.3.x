@@ -14,11 +14,15 @@
 					<div class="testimonial-content swiper-slide">
                         <div class="inner">
 							<div class="testimonial-images testimonial-images-{{ i }}">
-								<a href="javascript:void(0);" onclick="testimonialGoToSlide({{ i }})"><img src="{{ testimonial.image }}" alt="{{ testimonial.customer_name }}"></a>
-								
+								<a href="javascript:void(0);" onclick="testimonialGoToSlide({{ i }})">
+                                    {% if lazy_load %}
+                                        <img class="lazyload" src="{{ loader_img }}" data-src="{{ testimonial.image }}" alt="{{ testimonial.customer_name }}" />
+                                    {% else %}
+                                        <img src="{{ testimonial.image }}" alt="{{ testimonial.customer_name }}" />
+                                    {% endif %}
+                                </a>
 							</div>
 							<div class="testimonial-box">
-								
 								<p>{{ testimonial.content }}</p>
 								<span class="testimonial-author">{{ testimonial.customer_name }}</span>
 							</div>

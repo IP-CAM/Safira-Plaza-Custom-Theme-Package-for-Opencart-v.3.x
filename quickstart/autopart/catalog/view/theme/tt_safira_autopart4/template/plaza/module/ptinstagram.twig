@@ -7,7 +7,11 @@
         <div class="instagram-slides row">
             {% for instagram in instagrams %}
                 <a class="fancybox" href="{{ instagram.link }}" target="_blank" style="display: block;">
-				<img src="{{ instagram.medium_image }}" alt="{{ instagram.medium_image }}" />
+                {% if lazy_load %}
+                    <img class="lazyload" src="{{ loader_img }}" data-src="{{ instagram.medium_image }}" alt="{{ instagram.medium_image }}" />
+                {% else %}
+                    <img src="{{ instagram.medium_image }}" alt="{{ instagram.medium_image }}" />
+                {% endif %}
 				<span class="box-cmt">
 					<span class="like-count">{{ instagram.likes }}</span>
 					<span class="comment-count">{{ instagram.comment }}</span>
@@ -24,7 +28,11 @@
                     {% for instagram in instagrams %}
                         <div class="swiper-slide">
                             <a class="fancybox" href="{{ instagram.link }}" target="_blank" style="display: block;">
-							<img src="{{ instagram.medium_image }}" alt="{{ instagram.medium_image }}" />
+                            {% if lazy_load %}
+                                <img class="lazyload" src="{{ loader_img }}" data-src="{{ instagram.medium_image }}" alt="{{ instagram.medium_image }}" />
+                            {% else %}
+                                <img src="{{ instagram.medium_image }}" alt="{{ instagram.medium_image }}" />
+                            {% endif %}
 							<span class="box-cmt">
 								<span class="like-count">{{ instagram.likes }}</span>
 								<span class="comment-count">{{ instagram.comment }}</span>
@@ -62,7 +70,6 @@
                 slidesPerColumn: {{ slider.rows }},
                 autoplay: {% if slider.auto %} 3000 {% else %} false {% endif %},
                 loop: false,
-				// Responsive breakpoints
 				breakpoints: {
 					479: {
 					  slidesPerView: 3
