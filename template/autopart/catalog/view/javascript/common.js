@@ -57,6 +57,20 @@ $(document).ready(function() {
 		});
 	}
 
+	let stickyHeaderMobile = parseInt($('#hd-check-sticky-header-mobile').val());
+	if(stickyHeaderMobile === 1) {
+		let height_box_scroll = $('.scroll-fix').outerHeight(true);
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 400) {
+				$('.scroll-fix').addClass("scroll-fixed");
+				$('body').css('padding-top',height_box_scroll);
+			} else {
+				$('.scroll-fix').removeClass("scroll-fixed");
+				$('body').css('padding-top',0);
+			}
+		});
+	}
+
 	$('.product-thumb .product-item').hover(
 		function(){
 			$(this).closest('.products-container').addClass('item-hover');

@@ -14,6 +14,7 @@ h6{font-size:1.2rem;}
 img{max-width:100%;}
 a{color:#595959;}
 a:hover{text-decoration:none;}
+#logo a {color:#FFF;}
 legend{font-size:1.8rem;padding:0.7rem 0;}
 label{font-size:1.2rem;font-weight:normal;}
 select.form-control, textarea.form-control, input[type="text"].form-control, input[type="password"].form-control, input[type="datetime"].form-control, input[type="datetime-local"].form-control, input[type="date"].form-control, input[type="month"].form-control, input[type="time"].form-control, input[type="week"].form-control, input[type="number"].form-control, input[type="email"].form-control, input[type="url"].form-control, input[type="search"].form-control, input[type="tel"].form-control, input[type="color"].form-control{font-size:1.2rem;}
