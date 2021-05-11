@@ -775,12 +775,65 @@ class ControllerExtensionModulePtcontrolpanel extends Controller
 
             $this->cache->delete('cache_folder');
             $this->cache->delete('cache_mini_js_file_path');
-            $this->cache->delete('cache_mini_css_file_path');
+
+            $directories = glob(DIR_CATALOG . 'view/theme/*', GLOB_ONLYDIR);
+            foreach ($directories as $directory) {
+                $this->cache->delete('cache_mini_css_file_path' . basename($directory));
+            }
 
             $this->session->data['success'] = $this->language->get('text_import_success');
 
             $this->response->redirect($this->url->link('extension/module/ptcontrolpanel', 'user_token=' . $this->session->data['user_token'], true));
         }
+    }
+
+    private function removeFolder($folderName) {
+        $folderHandle = false;
+        if (is_dir($folderName))
+            $folderHandle = opendir($folderName);
+        if (!$folderHandle)
+            return false;
+
+        while($file = readdir($folderHandle)) {
+            if ($file != "." && $file != "..") {
+                if (!is_dir($folderName."/".$file)) {
+                    unlink($folderName."/".$file);
+                }
+                else {
+                    $this->removeFolder($folderName.'/'.$file);
+                }
+            }
+        }
+
+        closedir($folderHandle);
+        rmdir($folderName);
+        return true;
+    }
+
+    public function refreshCache() {
+        $this->load->language('extension/module/ptcontrolpanel');
+
+        try {
+            $this->removeFolder(DIR_SYSTEM . 'theme_cache');
+
+            $this->cache->delete('cache_folder');
+            $this->cache->delete('cache_mini_js_file_path');
+
+            $directories = glob(DIR_CATALOG . 'view/theme/*', GLOB_ONLYDIR);
+            foreach ($directories as $directory) {
+                $this->cache->delete('cache_mini_css_file_path' . basename($directory));
+            }
+
+            $json['result'] = true;
+            $json['success'] = $this->language->get('text_refresh_success');
+        } catch (\Exception $e) {
+            $json['result'] = false;
+            $json['error'] = $this->language->get('text_refresh_error');
+        }
+
+
+        $this->response->addHeader('Content-Type: application/json');
+        $this->response->setOutput(json_encode($json));
     }
 
     public function install() {

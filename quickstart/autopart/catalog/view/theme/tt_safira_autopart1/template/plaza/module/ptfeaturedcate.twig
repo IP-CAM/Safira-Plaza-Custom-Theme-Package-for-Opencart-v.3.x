@@ -15,7 +15,7 @@
 										{% if use_second_img %}
 											<div class="image">
 												{% if lazy_load %}
-													<a href="{{ category.href }}"><img class="lazyload" src="{{ loader_img }}" data-src="{{ category.secondary_image }}" alt="{{ category.name }}" /></a>
+													<a href="{{ category.href }}"><img class="lazyload" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ category.secondary_image }}" alt="{{ category.name }}" /></a>
 												{% else %}
 													<a href="{{ category.href }}"><img src="{{ category.secondary_image }}" alt="{{ category.name }}" /></a>
 												{% endif %}
@@ -132,7 +132,7 @@
 						{% if use_second_img %}
 							<div class="image">
 								{% if lazy_load %}
-									<img class="lazyload" src="{{ loader_img }}" data-src="{{ category.secondary_image }}" alt="{{ category.name }}" />
+									<img class="lazyload" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ category.secondary_image }}" alt="{{ category.name }}" />
 								{% else %}
 									<img src="{{ category.secondary_image }}" alt="{{ category.name }}" />
 								{% endif %}

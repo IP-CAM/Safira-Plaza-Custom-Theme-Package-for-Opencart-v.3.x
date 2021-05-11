@@ -15,6 +15,7 @@ template/*/image/cache/
 template/*/system/cache/
 template/*/system/logs/
 template/*/system/storage/
+template/*/system/theme_cache/
 template/*/admin/view/javascript/bootstrap/
 template/*/admin/view/javascript/codemirror/
 template/*/admin/view/javascript/summernote/
@@ -24,7 +25,6 @@ template/*/admin/view/stylesheet/bootstrap.scss
 template/*/admin/view/stylesheet/bootstrap.css
 template/*/catalog/view/javascript/bootstrap/
 template/*/catalog/view/javascript/qrcode.js
-template/*/_cached/
 
 quickstart/*/.htaccess
 quickstart/*/.htaccess.txt
@@ -42,6 +42,7 @@ quickstart/*/image/cache/
 quickstart/*/system/cache/
 quickstart/*/system/logs/
 quickstart/*/system/storage/
+quickstart/*/system/theme_cache/
 quickstart/*/admin/view/javascript/bootstrap/
 quickstart/*/admin/view/javascript/codemirror/
 quickstart/*/admin/view/javascript/summernote/

@@ -22,7 +22,7 @@
 								<div class="image-thumb">
 									<span>
                                         {% if lazy_load %}
-                                            <img class="lazyload" src="{{ loader_img }}" data-src="{{ tab.title_image }}" alt="{{ tab.title }}" />
+                                            <img class="lazyload" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ tab.title_image }}" alt="{{ tab.title }}" />
                                         {% else %}
                                             <img src="{{ tab.title_image }}" alt="{{ tab.title }}" />
                                         {% endif %}
@@ -110,7 +110,7 @@
 										<div class="image">
 											<a href="{{ single_image_link }}">
                                                 {% if lazy_load %}
-                                                    <img class="lazyload" src="{{ loader_img }}" data-src="{{ single_image }}" alt="" />
+                                                    <img class="lazyload" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ single_image }}" alt="" />
                                                 {% else %}
                                                     <img src="{{ single_image }}" alt="" />
                                                 {% endif %}
@@ -119,7 +119,7 @@
 									</div>
                                 {% else %}
                                     {% if lazy_load %}
-                                        <img class="lazyload" src="{{ loader_img }}" data-src="{{ single_image }}" alt="" />
+                                        <img class="lazyload" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ single_image }}" alt="" />
                                     {% else %}
                                         <img src="{{ single_image }}" alt="" />
                                     {% endif %}
@@ -283,7 +283,7 @@
 												<div class="image">
 													<a href="{{ tab.image['link'] }}">
                                                         {% if lazy_load %}
-                                                            <img class="lazyload" src="{{ loader_img }}" data-src="{{ tab.image['src'] }}" alt="{{ tab.image['link'] }}" />
+                                                            <img class="lazyload" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ tab.image['src'] }}" alt="{{ tab.image['link'] }}" />
                                                         {% else %}
                                                             <img src="{{ tab.image['src'] }}" alt="{{ tab.image['link'] }}" />
                                                         {% endif %}
@@ -292,7 +292,7 @@
 											</div>
                                         {% else %}
                                             {% if lazy_load %}
-                                                <img class="lazyload" src="{{ loader_img }}" data-src="{{ tab.image['src'] }}" alt="{{ tab.image['link'] }}" />
+                                                <img class="lazyload" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ tab.image['src'] }}" alt="{{ tab.image['link'] }}" />
                                             {% else %}
                                                 <img src="{{ tab.image['src'] }}" alt="{{ tab.image['link'] }}" />
                                             {% endif %}

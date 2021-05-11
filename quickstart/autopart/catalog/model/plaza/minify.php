@@ -12,8 +12,8 @@ class ModelPlazaMinify extends Model
             $this->cache->set('cache_folder', $cache_folder);
         }
 
-        if (!file_exists('_cached' . '/' . $this->cache->get('cache_folder'))) {
-            mkdir('_cached/' . $this->cache->get('cache_folder'), 0777, true);
+        if (!file_exists('system/theme_cache' . '/' . $this->cache->get('cache_folder'))) {
+            mkdir('system/theme_cache/' . $this->cache->get('cache_folder'), 0777, true);
         }
     }
 
@@ -28,20 +28,26 @@ class ModelPlazaMinify extends Model
     }
 
     public function getFilePath($type) {
-        if (!file_exists('_cached')) {
-            mkdir('_cached', 0777, true);
+        if (!file_exists('system/theme_cache')) {
+            mkdir('system/theme_cache', 0777, true);
         }
 
         $this->createCacheFolder();
 
-        $folder = '_cached/' . $this->cache->get('cache_folder') . '/';
+        $folder = 'system/theme_cache/' . $this->cache->get('cache_folder') . '/';
 
         if($type == 'css') {
-            if($this->cache->get('cache_mini_css_file_path')) {
-                $cache_file = $this->cache->get('cache_mini_css_file_path');
+            $theme_directory = $this->config->get('theme_' . $this->config->get('config_theme') . '_directory');
+
+            if (!file_exists($folder . $theme_directory)) {
+                mkdir($folder . $theme_directory, 0777, true);
+            }
+
+            if($this->cache->get('cache_mini_css_file_path' . $theme_directory) && file_exists($this->cache->get('cache_mini_css_file_path' . $theme_directory))) {
+                $cache_file = $this->cache->get('cache_mini_css_file_path' . $theme_directory);
             } else {
-                $cache_file = $folder . $this->getRandomString() . '.css';
-                $this->cache->set('cache_mini_css_file_path', $cache_file);
+                $cache_file = $folder . $theme_directory . '/' . $this->getRandomString() . '.css';
+                $this->cache->set('cache_mini_css_file_path' . $theme_directory, $cache_file);
             }
         }
 
