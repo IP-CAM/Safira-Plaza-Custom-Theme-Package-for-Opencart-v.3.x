@@ -3,6 +3,7 @@
     <div class="page-header">
         <div class="container-fluid">
             <div class="pull-right">
+                <button type="button" id="btn-refresh" class="btn btn-warning" data-toggle="tooltip" title="{{ button_refresh }}" onclick="refreshCache();"><i class="fa fa-refresh"></i> {{ button_refresh }}</button>
                 <button type="submit" form="form-ptcontrolpanel" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
                 <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
             <h1>{{ heading_title }}</h1>
@@ -169,7 +170,7 @@
                                                     <div class="frm-field frm-field-{{ store.store_id }}">
                                                         <ul class="nav nav-tabs hoz-ul-sections">
                                                             <li class="active"><a href="#tab-layout-{{ store.store_id }}" data-toggle="tab">{{ tab_layout }}</a></li>
-                                                            <li><a href="#tab-header-{{ store.store_id }}" data-toggle="tab">{{ tab_header }}</a></li>
+                                                            <li><a href="#tab-layout-header-{{ store.store_id }}" data-toggle="tab">{{ tab_header }}</a></li>
                                                         </ul>
 
                                                         <div class="tab-content child-content">
@@ -190,7 +191,7 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="tab-pane" id="tab-header-{{ store.store_id }}">
+                                                            <div class="tab-pane" id="tab-layout-header-{{ store.store_id }}">
                                                                 <div class="form-group">
                                                                     {% for header in headers %}
                                                                         <div class="col-sm-12 header-option">
@@ -341,8 +342,6 @@
                                                                         <input class="form-control jscolor" type="text" name="module_ptcontrolpanel_heading_color[{{ store.store_id }}]" value="{{ module_ptcontrolpanel_heading_color[store.store_id] }}" />
                                                                     </div>
                                                                 </div>
-
-
                                                             </div>
 
                                                             <div class="tab-pane" id="tab-link-{{ store.store_id }}">
@@ -352,8 +351,6 @@
                                                                         <input class="form-control jscolor" type="text" name="module_ptcontrolpanel_link_color[{{ store.store_id }}]" value="{{ module_ptcontrolpanel_link_color[store.store_id] }}" />
                                                                     </div>
                                                                 </div>
-
-
                                                             </div>
 
                                                             <div class="tab-pane" id="tab-button-{{ store.store_id }}">
@@ -897,6 +894,33 @@
         $('#form-data input[name=\'file\']').val(database);
 
         $('#form-data').submit();
+    }
+
+    function refreshCache() {
+        $.ajax({
+            url: "index.php?route=extension/module/ptcontrolpanel/refreshCache&user_token={{ user_token }}",
+            method: "GET",
+            dataType: "json",
+            beforeSend: function() {
+                $('#btn-refresh').html('<i class="fa fa-refresh"></i> {{ text_refreshing }}').removeClass().addClass('btn btn-primary');
+            },
+            success: function(json) {
+                if(json['result'] === true) {
+                    setTimeout(function () {
+                        $('#btn-refresh').html('<i class="fa fa-check"></i> ' + json['success']).removeClass().addClass('btn btn-success');
+                    }, 2000);
+                } else {
+                    setTimeout(function () {
+                        $('#btn-refresh').html(json['error']).removeClass().addClass('btn btn-error');
+                    }, 2000);
+                }
+            },
+            complete: function() {
+                setTimeout(function () {
+                    $('#btn-refresh').html('<i class="fa fa-refresh"></i> {{ button_refresh }}').removeClass().addClass('btn btn-warning');
+                }, 4000);
+            },
+        });
     }
 
     $('input[class=\'rd-header-option\']').on('change', function () {

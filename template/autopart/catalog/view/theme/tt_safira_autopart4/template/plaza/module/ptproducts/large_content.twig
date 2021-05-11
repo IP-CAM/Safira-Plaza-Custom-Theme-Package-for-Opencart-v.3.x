@@ -6,13 +6,13 @@
                 <a href="{{ href }}">
                     {% if rotate_image %}
                         {% if lazy_load %}
-                            <img src="{{ loader_img }}" data-src="{{ rotate_image }}" alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-rotate-image lazyload" />
+                            <img src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ rotate_image }}" alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-rotate-image lazyload" />
                         {% else %}
                             <img src="{{ rotate_image }}" alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-rotate-image " />
                         {% endif %}
                     {% endif %}
                     {% if lazy_load %}
-                        <img src="{{ loader_img }}" data-src="{{ thumb }}" alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-mod-{{ section_id }}-{{ product_id }} lazyload" />
+                        <img src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ thumb }}" alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-mod-{{ section_id }}-{{ product_id }} lazyload" />
                     {% else %}
                         <img src="{{ thumb }}" alt="{{ name[:20] ~ '...' }}" title="{{ name }}" class="img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
                     {% endif %}
@@ -40,7 +40,7 @@
                                         <div class="swiper-slide">
                                             <a href="javascript:changeImg('{{ section_id }}', '{{ product_id }}', '{{ img.popup }}');" class="child-thumb" data-img="{{ img.popup }}">
                                                 {% if lazy_load %}
-                                                    <img class="lazyload" src="{{ loader_img }}" data-src="{{ img.thumb }}" alt="{{ name[:20] ~ '...' }}"/>
+                                                    <img class="lazyload" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ img.thumb }}" alt="{{ name[:20] ~ '...' }}"/>
                                                 {% else %}
                                                     <img src="{{ img.thumb }}" alt="{{ name[:20] ~ '...' }}"/>
                                                 {% endif %}

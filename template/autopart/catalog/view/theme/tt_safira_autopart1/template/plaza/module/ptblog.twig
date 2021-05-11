@@ -19,7 +19,7 @@
 								<div class="post-item ">
 									<div class="post-image">
 										{% if lazy_load %}
-											<a title="{{ post.name }}" href="{{ post.href }}"><img class="lazyload" width="{{ img_width }}" height="{{ img_height}}" src="{{ loader_img }}" data-src="{{ post.image }}" alt="{{ post.name }}" /></a>
+											<a title="{{ post.name }}" href="{{ post.href }}"><img class="lazyload" width="{{ img_width }}" height="{{ img_height}}" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ post.image }}" alt="{{ post.name }}" /></a>
 										{% else %}
 											<a title="{{ post.name }}" href="{{ post.href }}"><img src="{{ post.image }}" alt="{{ post.name }}" /></a>
 										{% endif %}

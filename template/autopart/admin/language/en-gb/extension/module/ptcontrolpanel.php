@@ -8,6 +8,9 @@ $_['text_extension']       = 'Extensions';
 $_['text_edit']            = 'Plaza Control Panel';
 $_['text_success']         = 'Success: You have modified Plaza Settings!';
 $_['text_import_success']  = 'Success: You have imported database!';
+$_['text_refresh_success'] = 'Refreshed Successfully!';
+$_['text_refresh_error']   = 'Error occurred!';
+$_['text_refreshing']      = 'Refreshing ...';
 $_['text_list']            = 'List View';
 $_['text_grid']            = 'Grid View';
 $_['text_hover_img']       = 'Hover Image';
@@ -112,6 +115,7 @@ $_['entry_custom_js']      = 'Customize Javascript';
 // Button
 $_['button_activate']      = "Activate";
 $_['button_activated']     = "Activated";
+$_['button_refresh']       = "Clear JS & CSS cache";
 
 //Error
 $_['error_permission']     = 'Warning: You do not have permission to modify Plaza Theme!';

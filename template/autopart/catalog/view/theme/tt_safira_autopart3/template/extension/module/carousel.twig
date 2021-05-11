@@ -7,14 +7,14 @@
 				  {% if banner.link %}
 				  <a href="{{ banner.link }}">
 					  {% if lazy_load %}
-						  <img src="{{ loader_img }}" data-src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive lazyload" />
+						  <img src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive lazyload" />
 					  {% else %}
 						  <img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />
 					  {% endif %}
 				  </a>
 				  {% else %}
 					  {% if lazy_load %}
-						  <img src="{{ loader_img }}" data-src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive lazyload" />
+						  <img src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive lazyload" />
 					  {% else %}
 						  <img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />
 					  {% endif %}
