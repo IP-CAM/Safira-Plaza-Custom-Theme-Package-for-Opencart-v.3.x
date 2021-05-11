@@ -15,9 +15,9 @@
 				{% endif %}
 				<a href="{{ href }}">
 					{% if rotate_image %}
-						<img {% if lazy_load %} src="{{ loader_img }}" data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} lazyload {% endif %}" />
+						<img {% if lazy_load %} src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} lazyload {% endif %}" />
 					{% endif %}
-					<img {% if lazy_load %} src="{{ loader_img }}" data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name }}" title="{{ name }}" class="{% if lazy_load %} lazyload {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
+					<img {% if lazy_load %} src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name }}" title="{{ name }}" class="{% if lazy_load %} lazyload {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
 					{% if swatches_images %}
 						<input type="hidden" value="{{ thumb }}" class="img-default-{{ section_id }}-{{ product_id }}" />
 						{% for s_image in swatches_images %}
@@ -161,9 +161,9 @@
 				{% endif %}
 				<a href="{{ href }}">
 					{% if rotate_image %}
-						<img {% if lazy_load %} src="{{ loader_img }}" data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} lazyload {% endif %}" />
+						<img {% if lazy_load %} src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} lazyload {% endif %}" />
 					{% endif %}
-					<img {% if lazy_load %} src="{{ loader_img }}" data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name }}" title="{{ name }}" class="{% if lazy_load %} lazyload {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
+					<img {% if lazy_load %} src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name }}" title="{{ name }}" class="{% if lazy_load %} lazyload {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
 					{% if swatches_images %}
 						<input type="hidden" value="{{ thumb }}" class="img-default-{{ section_id }}-{{ product_id }}" />
 						{% for s_image in swatches_images %}
@@ -295,9 +295,9 @@
 				
 				<a href="{{ href }}">
 					{% if rotate_image %}
-						<img {% if lazy_load %} src="{{ loader_img }}" data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} lazyload {% endif %}" />
+						<img {% if lazy_load %} src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} lazyload {% endif %}" />
 					{% endif %}
-					<img {% if lazy_load %} src="{{ loader_img }}" data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name }}" title="{{ name }}" class="{% if lazy_load %} lazyload {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
+					<img {% if lazy_load %} src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name }}" title="{{ name }}" class="{% if lazy_load %} lazyload {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
 					{% if swatches_images %}
 						<input type="hidden" value="{{ thumb }}" class="img-default-{{ section_id }}-{{ product_id }}" />
 						{% for s_image in swatches_images %}

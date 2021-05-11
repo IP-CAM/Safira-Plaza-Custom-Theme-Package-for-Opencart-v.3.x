@@ -8,7 +8,7 @@
             {% for instagram in instagrams %}
                 <a class="fancybox" href="{{ instagram.link }}" target="_blank" style="display: block;">
                 {% if lazy_load %}
-                    <img class="lazyload" src="{{ loader_img }}" data-src="{{ instagram.medium_image }}" alt="{{ instagram.medium_image }}" />
+                    <img class="lazyload" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ instagram.medium_image }}" alt="{{ instagram.medium_image }}" />
                 {% else %}
                     <img src="{{ instagram.medium_image }}" alt="{{ instagram.medium_image }}" />
                 {% endif %}
@@ -29,7 +29,7 @@
                         <div class="swiper-slide">
                             <a class="fancybox" href="{{ instagram.link }}" target="_blank" style="display: block;">
                             {% if lazy_load %}
-                                <img class="lazyload" src="{{ loader_img }}" data-src="{{ instagram.medium_image }}" alt="{{ instagram.medium_image }}" />
+                                <img class="lazyload" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ instagram.medium_image }}" alt="{{ instagram.medium_image }}" />
                             {% else %}
                                 <img src="{{ instagram.medium_image }}" alt="{{ instagram.medium_image }}" />
                             {% endif %}
