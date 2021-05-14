@@ -9,5 +9,5 @@ INSERT INTO `oc_layout_route` (`layout_id`, `store_id`, `route`) VALUES
 (36, 0, 'product/product');
 UPDATE `oc_setting` SET `value` = '[\"4\",\"2\",\"3\",\"4\"]' WHERE `oc_setting`.`key` = 'module_ptcontrolpanel_header_layout' AND store_id = 0;
 UPDATE `oc_setting` SET `value` = '33' WHERE `oc_setting`.`key` = 'config_layout_id' AND store_id = 0;
-UPDATE `oc_setting` SET `value` = 'Safira Organic 3 - Responsive Opencart Theme' WHERE `oc_setting`.`key` = 'config_meta_title' AND store_id = 0;
+UPDATE `oc_setting` SET `value` = 'Safira Organic 4 - Responsive Opencart Theme' WHERE `oc_setting`.`key` = 'config_meta_title' AND store_id = 0;
 UPDATE `oc_setting` SET `value` = 'tt_safira4' WHERE `oc_setting`.`key` = 'theme_default_directory' AND store_id = 0;
