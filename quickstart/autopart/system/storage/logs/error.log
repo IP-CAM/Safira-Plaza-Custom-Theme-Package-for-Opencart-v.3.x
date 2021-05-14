@@ -1,6 +1,0 @@
-2021-04-15 9:51:12 - PHP Warning:  fopen(D:/Work/Xampp73/htdocs/safira/quickstart/autopart/system/storage/cache/cache.init_route.1618483872): failed to open stream: No such file or directory in D:\Work\Xampp73\htdocs\safira\quickstart\autopart\system\library\cache\file.php on line 28
-2021-04-15 9:51:12 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in D:\Work\Xampp73\htdocs\safira\quickstart\autopart\system\library\cache\file.php on line 30
-2021-04-15 9:51:12 - PHP Warning:  filesize(): stat failed for D:/Work/Xampp73/htdocs/safira/quickstart/autopart/system/storage/cache/cache.init_route.1618483872 in D:\Work\Xampp73\htdocs\safira\quickstart\autopart\system\library\cache\file.php on line 32
-2021-04-15 9:51:12 - PHP Warning:  fread() expects parameter 1 to be resource, bool given in D:\Work\Xampp73\htdocs\safira\quickstart\autopart\system\library\cache\file.php on line 32
-2021-04-15 9:51:12 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in D:\Work\Xampp73\htdocs\safira\quickstart\autopart\system\library\cache\file.php on line 34
-2021-04-15 9:51:12 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in D:\Work\Xampp73\htdocs\safira\quickstart\autopart\system\library\cache\file.php on line 36
