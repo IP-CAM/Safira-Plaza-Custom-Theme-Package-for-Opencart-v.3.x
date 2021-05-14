@@ -1,0 +1,65 @@
+<div id="header" >	
+	
+	<header class="scroll-fix ">
+		<div class="header-middle">	
+			<div class="container">
+				<div class="box-inner">
+					<div class="box-inner-inner">
+						<div class="col-logo">
+							{{ position3 }}				
+							<div id="logo">
+							{% if logo %}<a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" /></a>{% else %}
+							  <h1><a href="{{ home }}">{{ name }}</a></h1>
+							  {% endif %}
+							</div>
+						</div>
+						<ul class="box-language">
+							<li class="currency">
+							{% if header_currency %}
+							  {{ currency }}
+							{% endif %}
+							</li>
+							<li class="language">
+							{{ language }}
+							</li>
+						</ul>
+						<div class="col-cart">
+							<div class="inner">
+								
+								<ul class="links-login">
+									<li id="top-links" class="nav header-dropdown">
+									  <ul class="list-inline">
+										<li class="dropdown"><a href="{{ account }}" title="{{ text_account }}" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-user visible-xs"></i> <span class="hidden-xs">{{ text_account }}</span> <i class="icon-right ion-ios-arrow-down hidden-xs"></i></a>
+										  <ul class="dropdown-menu dropdown-menu-right pt-account">
+											{% if logged %}
+											<li><a href="{{ account }}">{{ text_account }}</a></li>
+											<li><a href="{{ order }}">{{ text_order }}</a></li>
+											<li><a href="{{ transaction }}">{{ text_transaction }}</a></li>
+											<li><a href="{{ download }}">{{ text_download }}</a></li>
+											<li><a id="pt-logout-link" href="{{ logout }}">{{ text_logout }}</a></li>
+											{% else %}
+											<li><a id="pt-register-link" href="{{ register }}">{{ text_register }}</a></li>
+											<li><a id="pt-login-link" href="{{ login }}">{{ text_login }}</a></li>
+											{% endif %}
+										  </ul>
+										</li>
+									  </ul>
+									</li>
+								</ul>
+								{{ search }}
+								<a href="{{ wishlist }}" id="wishlist-total" ><span>{{ text_wishlist }}</span></a>
+								{% if header_cart %}{{ cart }}{% endif %}
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<div class="header-bottom">
+			<div class="container">
+				{{ position2 }}
+			</div>
+		</div>
+	</header>
+</div>
