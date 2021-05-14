@@ -1,18 +1,32 @@
 <div class="brand-logo">	
 	<div class="swiper-viewport">
-	  <div id="carousel{{ module }}" class="swiper-container">
-		<div class="swiper-wrapper">{% for banner in banners %}
-		  <div class="swiper-slide text-center">{% if banner.link %}<a href="{{ banner.link }}"><img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" /></a>{% else %}<img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />{% endif %}</div>
-		  {% endfor %}</div>
-	  </div>
-	  <div class="swiper-pagination carousel{{ module }}"></div>
-	  <!--div class="swiper-pager">
-		<div class="swiper-button-next brand-logo-next"></div>
-		<div class="swiper-button-prev brand-logo-prev"></div>
-	  </div-->
+		<div id="carousel{{ module }}" class="swiper-container">
+			<div class="swiper-wrapper">
+				{% for banner in banners %}
+					<div class="swiper-slide text-center">
+						{% if banner.link %}
+						<a href="{{ banner.link }}">
+							{% if lazy_load %}
+								<img src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive lazyload" />
+							{% else %}
+								<img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />
+							{% endif %}
+						</a>
+						{% else %}
+							{% if lazy_load %}
+								<img src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive lazyload" />
+							{% else %}
+								<img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />
+							{% endif %}
+						{% endif %}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="swiper-pagination carousel{{ module }}"></div>
 	</div>
 </div>
-<script ><!--
+<script type="text/javascript"><!--
 $('#carousel{{ module }}').swiper({
 	mode: 'horizontal',
 	slidesPerView: 5,
@@ -22,7 +36,6 @@ $('#carousel{{ module }}').swiper({
     prevButton: '.brand-logo-prev',
 	autoplay: false,
 	loop: true,
-	// Responsive breakpoints
 	breakpoints: {
 		479: {
 		  slidesPerView: 2
@@ -40,4 +53,4 @@ $('#carousel{{ module }}').swiper({
 		}
 	}
 });
---></script>
+//--></script>

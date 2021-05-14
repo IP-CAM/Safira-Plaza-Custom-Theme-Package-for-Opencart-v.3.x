@@ -5,9 +5,9 @@
 			<div class="image {% if rotate_image %}rotate-image-container{% endif %}">
 				<a href="{{ href }}">
 					{% if rotate_image %}
-						<img {% if lazy_load %} data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} swiper-lazy {% endif %}" />
+						<img {% if lazy_load %} src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} lazyload {% endif %}" />
 					{% endif %}
-					<img {% if lazy_load %} data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name }}" title="{{ name }}" class="{% if lazy_load %} swiper-lazy {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
+					<img {% if lazy_load %} src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name }}" title="{{ name }}" class="{% if lazy_load %} lazyload {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
 					{% if swatches_images %}
 						<input type="hidden" value="{{ thumb }}" class="img-default-{{ section_id }}-{{ product_id }}" />
 						{% for s_image in swatches_images %}
@@ -15,9 +15,6 @@
 						{% endfor %}
 					{% endif %}
 				</a>
-				{% if lazy_load %}
-				<div class="swiper-lazy-preloader"></div>
-				{% endif %}
 				{% if show_cart or show_wishlist or show_compare or show_quickview %}
 					<div class="button-group">
 						<div class="inner">
@@ -94,17 +91,6 @@
 						<a href="{{ manufacturer_href }}">{{ manufacturer }}</a>
 					</p>
 				{% endif %}
-				<!-- {% if rating %} -->
-					<!-- <div class="rating"> -->
-						<!-- {% for i in 1..5 %} -->
-							<!-- {% if rating < i %} -->
-								<!-- <span class="icon-ratings"><i class="icon-rating icon-rating-o"></i></span> -->
-							<!-- {% else %} -->
-								<!-- <span class="icon-ratings"><i class="icon-rating icon-rating-x"></i></span> -->
-							<!-- {% endif %} -->
-						<!-- {% endfor %} -->
-					<!-- </div> -->
-				<!-- {% endif %} -->
 				{% if show_price and price %}
 					<p class="price">
 						{% if not special %}
@@ -144,9 +130,9 @@
 				{% endif %}
 				<a href="{{ href }}">
 					{% if rotate_image %}
-						<img {% if lazy_load %} data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} swiper-lazy {% endif %}" />
+						<img {% if lazy_load %} src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} lazyload {% endif %}" />
 					{% endif %}
-					<img {% if lazy_load %} data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name }}" title="{{ name }}" class="{% if lazy_load %} swiper-lazy {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
+					<img {% if lazy_load %} src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name }}" title="{{ name }}" class="{% if lazy_load %} lazyload {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
 					{% if swatches_images %}
 						<input type="hidden" value="{{ thumb }}" class="img-default-{{ section_id }}-{{ product_id }}" />
 						{% for s_image in swatches_images %}
@@ -154,9 +140,6 @@
 						{% endfor %}
 					{% endif %}
 				</a>
-				{% if lazy_load %}
-				<div class="swiper-lazy-preloader"></div>
-				{% endif %}
 			</div>
 			<div class="caption">
 				<div class="inner">
@@ -185,17 +168,6 @@
 						<a href="{{ manufacturer_href }}">{{ manufacturer }}</a>
 					</p>
 				{% endif %}
-				<!-- {% if rating %} -->
-					<!-- <div class="rating"> -->
-						<!-- {% for i in 1..5 %} -->
-							<!-- {% if rating < i %} -->
-								<!-- <span class="icon-ratings"><i class="icon-rating icon-rating-o"></i></span> -->
-							<!-- {% else %} -->
-								<!-- <span class="icon-ratings"><i class="icon-rating icon-rating-x"></i></span> -->
-							<!-- {% endif %} -->
-						<!-- {% endfor %} -->
-					<!-- </div> -->
-				<!-- {% endif %} -->
 				{% if show_price and price %}
 					<p class="price">
 						{% if not special %}
@@ -272,9 +244,9 @@
 				{% endif %}
 				<a href="{{ href }}">
 					{% if rotate_image %}
-						<img {% if lazy_load %} data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} swiper-lazy {% endif %}" />
+						<img {% if lazy_load %} src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ rotate_image }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ rotate_image }}" {% endif %}  alt="{{ name }}" title="{{ name }}" class="img-responsive img-rotate-image {% if lazy_load %} lazyload {% endif %}" />
 					{% endif %}
-					<img {% if lazy_load %} data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name }}" title="{{ name }}" class="{% if lazy_load %} swiper-lazy {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
+					<img {% if lazy_load %} src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ thumb }}" width="{{ img_width }}" height="{{ img_height }}" {% else %} src="{{ thumb }}" {% endif %} alt="{{ name }}" title="{{ name }}" class="{% if lazy_load %} lazyload {% endif %} img-responsive img-mod-{{ section_id }}-{{ product_id }}" />
 					{% if swatches_images %}
 						<input type="hidden" value="{{ thumb }}" class="img-default-{{ section_id }}-{{ product_id }}" />
 						{% for s_image in swatches_images %}
@@ -282,9 +254,6 @@
 						{% endfor %}
 					{% endif %}
 				</a>
-				{% if lazy_load %}
-				<div class="swiper-lazy-preloader"></div>
-				{% endif %}
 				{% if show_cart or show_wishlist or show_compare or show_quickview %}
 					<div class="button-group">
 						<div class="inner">

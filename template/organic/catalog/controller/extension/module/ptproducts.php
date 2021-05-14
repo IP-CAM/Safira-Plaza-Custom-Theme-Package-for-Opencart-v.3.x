@@ -730,6 +730,23 @@ class ControllerExtensionModulePtproducts extends Controller
             $this->document->addScript('catalog/view/javascript/plaza/swatches/swatches.js');
         }
 
+        $store_id = $this->config->get('config_store_id');
+
+        if (!empty($_SERVER['HTTPS'])) {
+            // SSL connection
+            $common_url = str_replace('http://', 'https://', $this->config->get('config_url'));
+        } else {
+            $common_url = $this->config->get('config_url');
+        }
+
+        if(isset($this->config->get('module_ptcontrolpanel_loader_img')[$store_id])) {
+            $data['loader_img'] = $common_url . 'image/' . $this->config->get('module_ptcontrolpanel_loader_img')[$store_id];
+        } else {
+            $data['loader_img'] = $common_url . 'image/plaza/ajax-loader.gif';;
+        }
+
+        $data['lazy_load'] = (int) $this->config->get('module_ptcontrolpanel_lazy_load')[$store_id];
+
         return $this->load->view('plaza/module/ptproducts', $data);
     }
 
@@ -751,7 +768,22 @@ class ControllerExtensionModulePtproducts extends Controller
     }
 
     public function getProductData($product_id, $params, $layout, $section_id) {
-		$store_id = $this->config->get('config_store_id');
+        $store_id = $this->config->get('config_store_id');
+
+        if (!empty($_SERVER['HTTPS'])) {
+            // SSL connection
+            $common_url = str_replace('http://', 'https://', $this->config->get('config_url'));
+        } else {
+            $common_url = $this->config->get('config_url');
+        }
+
+        if(isset($this->config->get('module_ptcontrolpanel_loader_img')[$store_id])) {
+            $data['loader_img'] = $common_url . 'image/' . $this->config->get('module_ptcontrolpanel_loader_img')[$store_id];
+        } else {
+            $data['loader_img'] = $common_url . 'image/plaza/ajax-loader.gif';;
+        }
+
+        $data['lazy_load'] = (int) $this->config->get('module_ptcontrolpanel_lazy_load')[$store_id];
 		
 		/* Lazy Load */
         if(isset($this->config->get('module_ptcontrolpanel_lazy_load')[$store_id])) {
@@ -781,8 +813,10 @@ class ControllerExtensionModulePtproducts extends Controller
 
             if ((float)$result['special']) {
                 $special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
+                $rate_special = round(($result['price'] - $result['special']) / $result['price'] * 100);
             } else {
                 $special = false;
+                $rate_special = false;
             }
 
             if ($this->config->get('config_review_status')) {
@@ -888,7 +922,18 @@ class ControllerExtensionModulePtproducts extends Controller
                     }
                 }
             }
+			$gallery_images = false;
 
+            $result_images = $this->model_catalog_product->getProductImages($result['product_id']);
+
+            if($result_images) {
+                foreach ($result_images as $img) {
+                    $gallery_images[] = array(
+                        'popup' => $this->model_tool_image->resize($img['image'], $width, $height),
+                        'thumb' => $this->model_tool_image->resize($img['image'], 90, 90)
+                    );
+                }
+            }
             $data = array(
                 'product_id'        => $result['product_id'],
                 'thumb'   	        => $image,
@@ -898,6 +943,7 @@ class ControllerExtensionModulePtproducts extends Controller
                 'name'    	        => $result['name'],
                 'price'   	        => $price,
                 'special' 	        => $special,
+                'rate_special'      => $rate_special,
                 'is_new'            => $is_new,
                 'date_start'  	    => $date_start,
                 'date_end'    	    => $date_end,
@@ -907,6 +953,7 @@ class ControllerExtensionModulePtproducts extends Controller
 				'quantity'      	=> (int) $result['quantity'],
 				'sold_number'   	=> $sold_number,
 				'total_qty'     	=> (int) $result['quantity'] + $sold_number,
+				'gallery_images'    => $gallery_images,
                 'swatches_images'   => $swatches_images,
                 'attribute_groups'  => $attribute_groups,
                 'show_price'        => $params['show_price'],
@@ -918,6 +965,7 @@ class ControllerExtensionModulePtproducts extends Controller
                 'show_description'  => $params['show_description'],
                 'show_label'        => $params['show_label'],
 				'lazy_load'			=> $lazy_load,
+                'loader_img'        => $data['loader_img'],
                 'section_id'        => $section_id,
                 'layout_type'       => $layout,
                 'href'    	        => $this->url->link('product/product', 'product_id=' . $result['product_id'], true),
@@ -926,9 +974,7 @@ class ControllerExtensionModulePtproducts extends Controller
             );
 
             $html_content = $this->load->view('plaza/module/ptproducts/content', $data);
-
             $data['html'] = $html_content;
-
             return $data;
         } else {
             return false;

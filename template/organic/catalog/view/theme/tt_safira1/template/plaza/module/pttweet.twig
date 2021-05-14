@@ -18,7 +18,6 @@
 
         $.getJSON(twitter_json_url,
                 function(feeds) {
-                    //alert(feeds);
                     var feedHTML = '<div class="tweet-content">';
                     var displayCounter = 1;
                     for (var i=0; i<feeds.length; i++) {
@@ -30,7 +29,6 @@
                         var isdirect = false;
                         var tweetid = feeds[i].id_str;
 
-                        //If the tweet has been retweeted, get the profile pic of the tweeter
                         if(typeof feeds[i].retweeted_status != 'undefined'){
                             profileimage = feeds[i].retweeted_status.user.profile_image_url_https;
                             tweetscreenname = feeds[i].retweeted_status.user.name;
@@ -40,12 +38,10 @@
                         };
 
 
-                        //Check to see if the tweet is a direct message
                         if (feeds[i].text.substr(0,1) == "@") {
                             isdirect = true;
                         }
 
-                        //console.log(feeds[i]);
 
                         if (((showretweets == true) || ((isaretweet == false) && (showretweets == false))) && ((showdirecttweets == true) || ((showdirecttweets == false) && (isdirect == false)))) {
                             if ((feeds[i].text.length > 1) && (displayCounter <= displaylimit)) {
@@ -73,7 +69,6 @@
                 });
 
         function addlinks(data) {
-            //Add link to all http:// links within tweets
             data = data.replace(/((https?|s?ftp|ssh)\:\/\/[^"\s\<\>]*[^.,;'">\:\s\<\>\)\]\!])/g, function(url) {
                 return '<a href="' + url + '" >' + url + '</a>';
             });
@@ -104,7 +99,6 @@
             } else if(delta < (24*60*60)) {
                 return (parseInt(delta / 3600)).toString() + 'h';
             } else if(delta < (48*60*60)) {
-                //return '1 day';
                 return shortdate;
             } else {
                 return shortdate;

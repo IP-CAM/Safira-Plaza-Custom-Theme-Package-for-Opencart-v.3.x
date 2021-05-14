@@ -37,7 +37,7 @@ class ModelPlazaSass extends Model
             $body_font_cate = $data['module_ptcontrolpanel_body_font_family_cate'][$store['store_id']];
             $body_font_link = $data['module_ptcontrolpanel_body_font_family_link'][$store['store_id']];
             $body_font_size = $data['module_ptcontrolpanel_body_font_size'][$store['store_id']];
-			if(!$body_font_size) $body_font_size = "14px";
+            if(!$body_font_size) $body_font_size = "14px";
             $body_font_weight = $data['module_ptcontrolpanel_body_font_weight'][$store['store_id']];
             $body_font_color = $data['module_ptcontrolpanel_body_color'][$store['store_id']];
 
@@ -68,14 +68,14 @@ class ModelPlazaSass extends Model
             $css_line .= "a { color: #". $link_color ."; } a:hover { color: #". $link_hover_color ."; }";
             $css_line .= "button,.btn,.btn-primary { color: #". $button_color ."; background-color: #". $button_bg_color ."; border-color: #". $button_bg_color .";background-image: none;} button:hover,.btn:hover,.btn-primary:hover,.btn-primary.disabled,.btn-primary.disabled.active,.btn-primary.disabled.focus,.btn-primary.disabled:active,.btn-primary.disabled:focus,.btn-primary.disabled:hover,.btn-primary[disabled],.btn-primary[disabled].active,.btn-primary[disabled].focus,.btn-primary[disabled]:active,.btn-primary[disabled]:focus,.btn-primary[disabled]:hover,fieldset[disabled] .btn-primary,fieldset[disabled] .btn-primary.active,fieldset[disabled] .btn-primary.focus,fieldset[disabled] .btn-primary:active,fieldset[disabled] .btn-primary:focus,fieldset[disabled] .btn-primary:hover,.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover { color: #". $button_hover_color ."; background-color: #". $button_bg_hover_color ."; border-color: #". $button_bg_hover_color ."; }";
             $css_line .= $custom_css;
-			
+
             $font_css_line = ":root {  --main-font: '". $body_font_family ."';--heading-font: '". $heading_font_family ."';--heading-color: #". $heading_font_color .";--link-hover-color: #". $link_hover_color .";--link-color: #". $link_color .";--button-color: #". $button_color .";--button-hover-color: #". $button_hover_color .";--button-bg-color: #". $button_bg_color .";--button-bg-hover-color: #". $button_bg_hover_color .";   }";
-           
+
             if($version >= 3036) {
                 $scss = new \ScssPhp\ScssPhp\Compiler();
                 $scss->setImportPaths(DIR_CATALOG . 'view/theme/' . $directory . '/stylesheet/sass/');
                 $scss->setFormatter('ScssPhp\ScssPhp\Formatter\Compressed');
-            } else { 
+            } else {
                 $scss = new Scssc();
                 $scss->setImportPaths(DIR_CATALOG . 'view/theme/' . $directory . '/stylesheet/sass/');
                 $scss->setFormatter('scss_formatter_compressed');
@@ -94,8 +94,8 @@ class ModelPlazaSass extends Model
             flock($handle, LOCK_UN);
 
             fclose($handle);
-			
-			$output = $scss->compile($font_css_line);
+
+            $output = $scss->compile($font_css_line);
 
             $handle = fopen($file_font, 'w');
 
@@ -110,13 +110,13 @@ class ModelPlazaSass extends Model
             fclose($handle);
         }
     }
-	
-	private function getVersionNumber($version_string) {
+
+    private function getVersionNumber($version_string) {
         $version = '';
         $version_string_arr = explode('.', $version_string);
 
         foreach ($version_string_arr as $version_string_part) {
-            $version .= $version_string_part;  
+            $version .= $version_string_part;
         }
 
         return (int) $version;

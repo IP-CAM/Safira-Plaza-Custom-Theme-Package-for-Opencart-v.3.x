@@ -95,7 +95,11 @@
                                 {% if top_item.has_link %}
                                     <a class="a-top-link" href="{{ top_item.link }}">
                                         {% if top_item.icon %}
-                                            <img src="{{ top_item.icon }}" class="top-icon" alt="{{ top_item.title }}"/>
+                                            {% if load_load %}
+                                                <img src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ top_item.icon }}" class="top-icon lazyload" alt="{{ top_item.title }}"/>
+                                            {% else %}
+                                                <img src="{{ top_item.icon }}" class="top-icon" alt="{{ top_item.title }}"/>
+                                            {% endif %}
                                         {% endif %}
                                         {% if top_item.has_title %}
                                             <span>{{ top_item.title }}</span>
@@ -107,7 +111,11 @@
                                 {% else %}
                                     <a class="a-top-link a-item" href="javascript:void(0)">
                                         {% if top_item.icon %}
-                                            <img src="{{ top_item.icon }}" class="top-icon" alt="{{ top_item.title }}" />
+                                            {% if lazy_load %}
+                                                <img src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ top_item.icon }}" class="top-icon lazyload" alt="{{ top_item.title }}" />
+                                            {% else %}
+                                                <img src="{{ top_item.icon }}" class="top-icon" alt="{{ top_item.title }}" />
+                                            {% endif %}
                                         {% endif %}
                                         {% if top_item.has_title %}
                                             <span>{{ top_item.title }}</span>
@@ -156,7 +164,13 @@
                                                                 {% for widget in widgets %}
                                                                     <div class="col-md-{{ widget.cols }} sub-item2-content sub-item2-category-content" data-cols="{{ widget.cols }}">
                                                                         {% if widget.image %}
-                                                                            <a href="{{ widget.link }}"><img src="{{ widget.image }}" title="{{ widget.title }}" alt="{{ widget.title }}" class="mega-second-image" /></a>
+                                                                            <a href="{{ widget.link }}">
+                                                                                {% if lazy_load %}
+                                                                                    <img src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ widget.image }}" title="{{ widget.title }}" alt="{{ widget.title }}" class="mega-second-image lazyload" />
+                                                                                {% else %}
+                                                                                    <img src="{{ widget.image }}" title="{{ widget.title }}" alt="{{ widget.title }}" class="mega-second-image" />
+                                                                                {% endif %}
+                                                                            </a>
                                                                         {% endif %}
                                                                         <h4><a class="a-mega-second-link" href="{{ widget.link }}">{{ widget.title }}</a></h4>
                                                                         {% if widget.children|length > 0 %}
@@ -187,7 +201,13 @@
                                                                     {% if widget.type == "category" %}
                                                                         <div class="col-md-{{ widget.cols }} sub-item2-content sub-item2-category-content" data-cols="{{ widget.cols }}">
                                                                             {% if widget.image %}
-                                                                                <a  href="{{ widget.link }}"><img src="{{ widget.image }}" title="{{ widget.title }}" alt="{{ widget.title }}" class="mega-second-image" /></a>
+                                                                                <a href="{{ widget.link }}">
+                                                                                    {% if lazy_load %}
+                                                                                        <img src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ widget.image }}" title="{{ widget.title }}" alt="{{ widget.title }}" class="mega-second-image lazyload" />
+                                                                                    {% else %}
+                                                                                        <img src="{{ widget.image }}" title="{{ widget.title }}" alt="{{ widget.title }}" class="mega-second-image" />
+                                                                                    {% endif %}
+                                                                                </a>
                                                                             {% endif %}
                                                                             <h4><a class="a-mega-second-link" href="{{ widget.link }}">{{ widget.title }}</a></h4>
                                                                             {% if widget.children|length > 0 %}
@@ -203,7 +223,13 @@
                                                                     {% if widget.type == "product" %}
                                                                         <div class="col-md-{{ widget.cols }} sub-item2-content product-col-menu" data-cols="{{ widget.cols }}">
                                                                             {% if widget.image %}
-                                                                                <a  href="{{ widget.link }}"><img src="{{ widget.image }}" alt="{{ widget.title }}" class="mega-second-image" /></a>
+                                                                                <a href="{{ widget.link }}">
+                                                                                    {% if lazy_load %}
+                                                                                        <img src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ widget.image }}" alt="{{ widget.title }}" class="mega-second-image lazyload" />
+                                                                                    {% else %}
+                                                                                        <img src="{{ widget.image }}" alt="{{ widget.title }}" class="mega-second-image" />
+                                                                                    {% endif %}
+                                                                                </a>
                                                                             {% endif %}
                                                                            <h4 class="product-menu-name"><a class="a-mega-second-link product-menu-link" href="{{ widget.link }}">{{ widget.title }}</a></h4>
                                                                         </div>
@@ -340,7 +366,11 @@
                                 {% if top_item.has_link %}
                                     <a class="a-top-link a-item" href="{{ top_item.link }}">
                                         {% if top_item.icon %}
-                                            <img src="{{ top_item.icon }}" class="top-icon" alt="{{ top_item.title }}" />
+                                            {% if lazy_load %}
+                                                <img src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ top_item.icon }}" class="top-icon lazyload" alt="{{ top_item.title }}" />
+                                            {% else %}
+                                                <img src="{{ top_item.icon }}" class="top-icon" alt="{{ top_item.title }}" />
+                                            {% endif %}
                                         {% endif %}
                                         {% if top_item.has_title %}
                                             <span>{{ top_item.title }}</span>
@@ -352,7 +382,11 @@
                                 {% else %}
                                     <a class="a-top-link a-item" href="javascript:void(0)">
                                         {% if top_item.icon %}
-                                            <img src="{{ top_item.icon }}" class="top-icon" alt="{{ top_item.title }}" />
+                                            {% if lazy_load %}
+                                                <img src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ top_item.icon }}" class="top-icon lazyload" alt="{{ top_item.title }}" />
+                                            {% else %}
+                                                <img src="{{ top_item.icon }}" class="top-icon" alt="{{ top_item.title }}" />
+                                            {% endif %}
                                         {% endif %}
                                         {% if top_item.has_title %}
                                             <span>{{ top_item.title }}</span>
@@ -399,7 +433,11 @@
                                                                 {% for widget in widgets %}
                                                                     <div class="col-md-{{ widget.cols }} sub-item2-content" data-cols="{{ widget.cols }}">
                                                                         {% if widget.image %}
-                                                                            <img src="{{ widget.image }}" alt="{{ widget.title }}" class="mega-second-image" />
+                                                                            {% if lazy_load %}
+                                                                                <img src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ widget.image }}" alt="{{ widget.title }}" class="mega-second-image lazyload" />
+                                                                            {% else %}
+                                                                                <img src="{{ widget.image }}" alt="{{ widget.title }}" class="mega-second-image" />
+                                                                            {% endif %}
                                                                         {% endif %}
                                                                         <h4><a class="a-mega-second-link" href="{{ widget.link }}">{{ widget.title }}</a></h4>
                                                                         {% if widget.children|length > 0 %}
@@ -420,7 +458,11 @@
                                                                     {% if widget.type == "category" %}
                                                                         <div class="col-md-{{ widget.cols }} sub-item2-content" data-cols="{{ widget.cols }}">
                                                                             {% if widget.image %}
-                                                                                <img src="{{ widget.image }}" alt="{{ widget.title }}" class="mega-second-image" />
+                                                                                {% if lazy_load %}
+                                                                                    <img src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ widget.image }}" alt="{{ widget.title }}" class="mega-second-image lazyload" />
+                                                                                {% else %}
+                                                                                    <img src="{{ widget.image }}" alt="{{ widget.title }}" class="mega-second-image" />
+                                                                                {% endif %}
                                                                             {% endif %}
                                                                             <h4><a class="a-mega-second-link" href="{{ widget.link }}">{{ widget.title }}</a></h4>
                                                                             {% if widget.children|length > 0 %}
@@ -436,7 +478,11 @@
                                                                     {% if widget.type == "product" %}
                                                                         <div class="col-md-{{ widget.cols }} sub-item2-content" data-cols="{{ widget.cols }}">
                                                                             {% if widget.image %}
-                                                                                <img src="{{ widget.image }}" alt="{{ widget.title }}" class="mega-second-image" />
+                                                                                {% if lazy_load %}
+                                                                                    <img src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ widget.image }}" alt="{{ widget.title }}" class="mega-second-image lazyload" />
+                                                                                {% else %}
+                                                                                    <img src="{{ widget.image }}" alt="{{ widget.title }}" class="mega-second-image" />
+                                                                                {% endif %}
                                                                             {% endif %}
                                                                             <h4><a class="a-mega-second-link" href="{{ widget.link }}">{{ widget.title }}</a></h4>
                                                                         </div>
@@ -570,7 +616,11 @@
                                 {% if top_item.has_link %}
                                     <a class="a-top-link a-item" href="{{ top_item.link }}">
                                         {% if top_item.icon %}
-                                            <img src="{{ top_item.icon }}" class="top-icon" alt="{{ top_item.title }}" />
+                                            {% if lazy_load %}
+                                                <img src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ top_item.icon }}" class="top-icon lazyload" alt="{{ top_item.title }}" />
+                                            {% else %}
+                                                <img src="{{ top_item.icon }}" class="top-icon" alt="{{ top_item.title }}" />
+                                            {% endif %}
                                         {% endif %}
                                         {% if top_item.has_title %}
                                             <span>{{ top_item.title }}</span>
@@ -585,7 +635,11 @@
                                 {% else %}
                                     <a class="a-top-link a-item" href="javascript:void(0)">
                                         {% if top_item.icon %}
-                                            <img src="{{ top_item.icon }}" class="top-icon" alt="{{ top_item.title }}" />
+                                            {% if lazy_load %}
+                                                <img src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ top_item.icon }}" class="top-icon lazyload" alt="{{ top_item.title }}" />
+                                            {% else %}
+                                                <img src="{{ top_item.icon }}" class="top-icon" alt="{{ top_item.title }}" />
+                                            {% endif %}
                                         {% endif %}
                                         {% if top_item.has_title %}
                                             <span>{{ top_item.title }}</span>

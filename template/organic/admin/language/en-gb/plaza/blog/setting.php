@@ -40,6 +40,7 @@ $_['help_post_limit'] 	        = 'Determines number of posts are shown per page.
 
 // Error
 $_['error_image_post']          = 'Post Image Size in Post Page required!';
+$_['error_image_related_post']          = 'Related Post Image Size in Post Page required!';
 $_['error_image_category']      = 'Post Image Size in Category Page required!';
 $_['error_image_blog']          = 'Post Image Size in Blog Page required!';
 $_['error_warning']             = 'Warning: Please check the form carefully for errors!';

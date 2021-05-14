@@ -30,6 +30,54 @@ $(document).ajaxStop(function() {
 	}	
 });
 $(document).ready(function() {
+	// Scroll Top
+	let scrollTop = parseInt($('#hd-check-scroll-top').val());
+	if(scrollTop === 1) {
+		$("#back-top").hide();
+		$(function () {
+			$(window).scroll(function () {
+				if ($(this).scrollTop() > $('body').height()/3) {
+					$('#back-top').fadeIn();
+				} else {
+					$('#back-top').fadeOut();
+				}
+			});
+			$('#back-top').click(function () {
+				$('body,html').animate({scrollTop: 0}, 800);
+				return false;
+			});
+		});
+	}
+
+	// Sticky Header
+	let stickyHeader = parseInt($('#hd-check-sticky-header').val());
+	if(stickyHeader === 1) {
+		let height_box_scroll = $('.scroll-fix').outerHeight(true);
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 190) {
+				$('.scroll-fix').addClass("scroll-fixed");
+				$('body').css('padding-top',0);
+			} else {
+				$('.scroll-fix').removeClass("scroll-fixed");
+				$('body').css('padding-top',0);
+			}
+		});
+	}
+
+	let stickyHeaderMobile = parseInt($('#hd-check-sticky-header-mobile').val());
+	if(stickyHeaderMobile === 1) {
+		let height_box_scroll = $('.scroll-fix').outerHeight(true);
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 400) {
+				$('.scroll-fix').addClass("scroll-fixed");
+				$('body').css('padding-top',height_box_scroll);
+			} else {
+				$('.scroll-fix').removeClass("scroll-fixed");
+				$('body').css('padding-top',0);
+			}
+		});
+	}
+
 	// Custom move breadcrumb by Plazathemes
 	$("body:not(.common-home) header").after('<div class="breadcrumbs"><div class="container"><div class="container-inner"></div></div></div>');	
 	var breadcrumb = $('ul.breadcrumb');

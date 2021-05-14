@@ -2,7 +2,7 @@
 class ModelPlazaSlider extends Model
 {
     public function addSlider($data) {
-        $this->db->query("INSERT INTO " . DB_PREFIX . "ptslider SET name = '" . $this->db->escape($data['name']) . "', status = '" . (int)$data['status'] . "',auto = '" . (int)$data['auto'] . "',delay = '" . (int)$data['delay'] . "',hover = '" . (int)$data['hover'] . "',nextback = '" . (int)$data['nextback'] . "',contrl = '" . (int)$data['contrl'] . "',effect = '" . $data['effect'] . "'");
+        $this->db->query("INSERT INTO " . DB_PREFIX . "ptslider SET name = '" . $this->db->escape($data['name']) . "', status = '" . (int)$data['status'] . "',auto = '" . (int)$data['auto'] . "',delay = '" . (int)$data['delay'] . "',hover = '" . (int)$data['hover'] . "',nextback = '" . (int)$data['nextback'] . "',contrl = '" . (int)$data['contrl'] . "'");
 
         $ptslider_id = $this->db->getLastId();
 
@@ -29,7 +29,7 @@ class ModelPlazaSlider extends Model
         $slider = $this->getSlider($ptslider_id);
         $sliderImages = $this->getSliderImages($ptslider_id);
 
-        $this->db->query("INSERT INTO " . DB_PREFIX . "ptslider SET name = '" . $this->db->escape($slider['name']) . "', status = '" . (int) $slider['status'] . "',auto = '" . (int) $slider['auto'] . "',delay = '" . (int) $slider['delay'] . "',hover = '" . (int) $slider['hover'] . "',nextback = '" . (int) $slider['nextback'] . "',contrl = '" . (int) $slider['contrl'] . "',effect = '" . $slider['effect'] . "'");
+        $this->db->query("INSERT INTO " . DB_PREFIX . "ptslider SET name = '" . $this->db->escape($slider['name']) . "', status = '" . (int) $slider['status'] . "',auto = '" . (int) $slider['auto'] . "',delay = '" . (int) $slider['delay'] . "',hover = '" . (int) $slider['hover'] . "',nextback = '" . (int) $slider['nextback'] . "',contrl = '" . (int) $slider['contrl'] . "'");
 
         $ptslider_id = $this->db->getLastId();
 
@@ -53,7 +53,7 @@ class ModelPlazaSlider extends Model
     }
 
     public function editSlider($ptslider_id, $data) {
-        $this->db->query("UPDATE " . DB_PREFIX . "ptslider SET name = '" . $this->db->escape($data['name']) . "', status = '" . (int) $data['status'] . "', auto = '" . (int) $data['auto'] . "', delay = '" . (int) $data['delay'] . "', hover = '" . (int) $data['hover'] . "', nextback = '" . (int) $data['nextback'] . "', effect = '" . $data['effect'] . "', contrl = '" . (int) $data['contrl'] . "' WHERE ptslider_id = '" . (int) $ptslider_id . "'");
+        $this->db->query("UPDATE " . DB_PREFIX . "ptslider SET name = '" . $this->db->escape($data['name']) . "', status = '" . (int) $data['status'] . "', auto = '" . (int) $data['auto'] . "', delay = '" . (int) $data['delay'] . "', hover = '" . (int) $data['hover'] . "', nextback = '" . (int) $data['nextback'] . "', contrl = '" . (int) $data['contrl'] . "' WHERE ptslider_id = '" . (int) $ptslider_id . "'");
 
         $this->db->query("DELETE FROM " . DB_PREFIX . "ptslider_image WHERE ptslider_id = '" . (int) $ptslider_id . "'");
         $this->db->query("DELETE FROM " . DB_PREFIX . "ptslider_image_description WHERE ptslider_id = '" . (int) $ptslider_id . "'");

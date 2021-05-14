@@ -11,7 +11,7 @@ $_['text_gallery_mode'] = 'Gallery';
 $_['text_slider_mode']  = 'Slider';
 
 // Help
-$_['help_access_token'] = 'You need to get your own access token from Instagram. Try this website: <a href="http://instagram.pixelunion.net/" target="_blank">http://instagram.pixelunion.net/</a>';
+$_['help_access_token'] = 'You need to get your own access token from Instagram. Try this website: <a href="https://developers.facebook.com/docs/instagram-basic-display-api/guides/getting-access-tokens-and-permissions/" target="_blank">https://developers.facebook.com/docs/instagram-basic-display-api/guides/getting-access-tokens-and-permissions/</a>';
 $_['help_userid']       = 'Get Your Instagram USER ID: <a href="https://codeofaninja.com/tools/find-instagram-user-id" target="_blank">https://codeofaninja.com/tools/find-instagram-user-id</a>';
 
 // Entry

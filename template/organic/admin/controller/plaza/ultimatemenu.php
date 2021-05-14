@@ -1307,7 +1307,7 @@ class ControllerPlazaUltimatemenu extends Controller
                 'sort'        => 'name',
                 'order'       => 'ASC',
                 'start'       => 0,
-                'limit'       => 5
+                'limit'       => 10
             );
 
             $results = $this->model_plaza_ultimatemenu->getAllCategories($filter_data);

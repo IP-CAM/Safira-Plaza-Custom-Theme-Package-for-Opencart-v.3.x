@@ -9,7 +9,11 @@
                             <div class="swiper-slide ">
 								<div class="category-content">
 									{% if use_second_img %}
-										<a href="{{ category.href }}"><img src="{{ category.secondary_image }}" alt="{{ category.name }}" /></a>
+										{% if lazy_load %}
+											<a href="{{ category.href }}"><img class="lazyload" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ category.secondary_image }}" alt="{{ category.name }}" /></a>
+										{% else %}
+											<a href="{{ category.href }}"><img src="{{ category.secondary_image }}" alt="{{ category.name }}" /></a>
+										{% endif %}
 									{% endif %}
 									<h4 class="name"><a href="{{ category.href }}">{{ category.name }}</a></h4>
 									<p class="total-items">{{ category.product_total ~ " " ~ text_products }}</p>
@@ -46,7 +50,7 @@
                 {% endif %}
             </div>
 
-            <script>
+            <script type="text/javascript"><!--
                 $(document).ready(function() {
                     $(".featured-categories-content").swiper({
                         spaceBetween: 0,
@@ -63,7 +67,6 @@
                         slidesPerColumn: {{ slide_settings.rows }},
                         autoplay: {% if slide_settings.autoplay %} 3000 {% else %} false {% endif %},
                         loop: false,
-						// Responsive breakpoints
 							breakpoints: {
 								479: {
 								  slidesPerView: 2
@@ -82,13 +85,17 @@
 							}
                     });
                 });
-            </script>
+            //--></script>
         {% else %}
             <div class="featured-categories-content">
                 {% for category in categories %}
                     <div class="category-content">
                         {% if use_second_img %}
-                            <img src="{{ category.secondary_image }}" alt="{{ category.name }}" />
+							{% if lazy_load %}
+								<img class="lazyload" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ category.secondary_image }}" alt="{{ category.name }}" />
+							{% else %}
+								<img src="{{ category.secondary_image }}" alt="{{ category.name }}" />
+							{% endif %}
                         {% endif %}
                         <h4 class="name"><a href="{{ category.href }}">{{ category.name }}</a></h4>
                         {% if show_cate_des and category.description %}

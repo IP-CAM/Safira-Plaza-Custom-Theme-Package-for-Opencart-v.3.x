@@ -34,12 +34,6 @@ class ControllerExtensionModulePtinstagram extends Controller
             $data['error_name'] = '';
         }
 
-        if (isset($this->error['userid'])) {
-            $data['error_userid'] = $this->error['userid'];
-        } else {
-            $data['error_userid'] = '';
-        }
-
         if (isset($this->error['access_token'])) {
             $data['error_access_token'] = $this->error['access_token'];
         } else {
@@ -104,14 +98,6 @@ class ControllerExtensionModulePtinstagram extends Controller
             $data['view_mode'] = $module_info['view_mode'];
         } else {
             $data['view_mode'] = 'gallery';
-        }
-
-        if (isset($this->request->post['user_id'])) {
-            $data['user_id'] = $this->request->post['user_id'];
-        } elseif (!empty($module_info)) {
-            $data['user_id'] = $module_info['user_id'];
-        } else {
-            $data['user_id'] = '';
         }
 
         if (isset($this->request->post['access_token'])) {
@@ -196,10 +182,6 @@ class ControllerExtensionModulePtinstagram extends Controller
 
         if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 64)) {
             $this->error['name'] = $this->language->get('error_name');
-        }
-
-        if (!$this->request->post['user_id']) {
-            $this->error['userid'] = $this->language->get('error_userid');
         }
 
         if (!$this->request->post['access_token']) {

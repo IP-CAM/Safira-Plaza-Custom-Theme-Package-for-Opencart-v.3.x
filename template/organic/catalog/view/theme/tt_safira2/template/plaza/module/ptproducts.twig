@@ -14,7 +14,11 @@
 						<li>
 							<a href="javascript:void(0);" data-tab="#tab-product-{{ module_id }}-{{ tab_count }}">
 								{% if tab.title_image %}
-                                    <img src="{{ tab.title_image }}" alt="{{ tab.title }}" />
+                                    {% if lazy_load %}
+                                        <img class="lazyload" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ tab.title_image }}" alt="{{ tab.title }}" />
+                                    {% else %}
+                                        <img src="{{ tab.title_image }}" alt="{{ tab.title }}" />
+                                    {% endif %}
                                 {% endif %}
                                 <span>{{ tab.title }}</span>
 							</a>
@@ -64,7 +68,13 @@
                                     {% for product in single_products %}
                                         <div class="swiper-slide">
                                             <div class="thumb-image">
-                                                <a href="javascript:void(0);" onclick="productGoToSlide({{ i }})"><img src="{{ product.thumb }}" alt="{{ product.name }}"></a>
+                                                <a href="javascript:void(0);" onclick="productGoToSlide({{ i }})">
+                                                    {% if lazy_load %}
+                                                        <img class="lazyload" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ product.thumb }}" alt="{{ product.name }}" />
+                                                    {% else %}
+                                                        <img src="{{ product.thumb }}" alt="{{ product.name }}">
+                                                    {% endif %}
+                                                </a>
                                             </div>
                                         </div>
                                         {% set i = i + 1 %}
@@ -160,10 +170,18 @@
                             <div class="image-content">
                                 {% if single_image_link %}
                                     <a href="{{ single_image_link }}">
-                                        <img src="{{ single_image }}" alt="" />
+                                        {% if lazy_load %}
+                                            <img class="lazyload" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ single_image }}" alt="" />
+                                        {% else %}
+                                            <img src="{{ single_image }}" alt="" />
+                                        {% endif %}
                                     </a>
                                 {% else %}
-                                    <img src="{{ single_image }}" alt="" />
+                                    {% if lazy_load %}
+                                        <img class="lazyload" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ single_image }}" alt="" />
+                                    {% else %}
+                                        <img src="{{ single_image }}" alt="" />
+                                    {% endif %}
                                 {% endif %}
                             </div>
                         </div>
@@ -339,12 +357,20 @@
                                             <div class="pt-block">
 												<div class="image">
 													<a href="{{ tab.image['link'] }}">
-														<img src="{{ tab.image['src'] }}" alt="{{ tab.image['link'] }}" />
+                                                        {% if lazy_load %}
+                                                            <img class="lazyload" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ tab.image['src'] }}" alt="{{ tab.image['link'] }}" />
+                                                        {% else %}
+                                                            <img src="{{ tab.image['src'] }}" alt="{{ tab.image['link'] }}" />
+                                                        {% endif %}
 													</a>
 												</div>
 											</div>
                                         {% else %}
-                                            <img src="{{ tab.image['src'] }}" alt="{{ tab.image['link'] }}" />
+                                            {% if lazy_load %}
+                                                <img class="lazyload" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ tab.image['src'] }}" alt="{{ tab.image['link'] }}" />
+                                            {% else %}
+                                                <img src="{{ tab.image['src'] }}" alt="{{ tab.image['link'] }}" />
+                                            {% endif %}
                                         {% endif %}
                                     </div>
                                 </div>

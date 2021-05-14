@@ -29,6 +29,7 @@ class ControllerPlazaHeader extends Controller
 
         $data['home'] = $this->url->link('common/home');
         $data['wishlist'] = $this->url->link('account/wishlist', '', true);
+		$data['compare'] = $this->url->link('product/compare');
         $data['logged'] = $this->customer->isLogged();
         $data['account'] = $this->url->link('account/account', '', true);
         $data['register'] = $this->url->link('account/register', '', true);
@@ -41,7 +42,7 @@ class ControllerPlazaHeader extends Controller
         $data['checkout'] = $this->url->link('checkout/checkout', '', true);
         $data['contact'] = $this->url->link('information/contact');
         $data['telephone'] = $this->config->get('config_telephone');
-
+		$data['email'] = $this->config->get('config_email');
         $data['language'] = $this->load->controller('common/language');
         $data['currency'] = $this->load->controller('common/currency');
         $data['search'] = $this->load->controller('common/search');

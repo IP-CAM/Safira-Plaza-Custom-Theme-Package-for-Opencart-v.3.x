@@ -92,11 +92,63 @@ class ControllerExtensionModulePtcontrolpanel extends Controller
             'href' => $this->url->link('extension/module/ptcontrolpanel', 'user_token=' . $this->session->data['user_token'], true)
         );
 
-        $data['database'] = array(
-            DIR_APPLICATION . '../plazadata/plaza_db1.sql' => 'Layout 1',
-            DIR_APPLICATION . '../plazadata/plaza_db2.sql' => 'Layout 2',
-            DIR_APPLICATION . '../plazadata/plaza_db3.sql' => 'Layout 3',
-            DIR_APPLICATION . '../plazadata/plaza_db4.sql' => 'Layout 4'
+        if (!empty($_SERVER['HTTPS'])) {
+            // SSL connection
+            $common_url = HTTPS_CATALOG;
+        } else {
+            $common_url = HTTP_CATALOG;
+        }
+
+        $data['theme_directory'] = $this->config->get('theme_' . $this->config->get('config_theme') . '_directory');
+
+        $data['layouts'] = array(
+            array(
+                'skin' => 1,
+                'directory' => 'tt_safira1',
+                'database' => DIR_APPLICATION . '../plazadata/plaza_db1.sql',
+                'title' => 'Layout Organic 1',
+                'preview' => $common_url . 'image/plaza/preview/layout/organic1.jpg'
+            ),
+            array(
+                'skin' => 2,
+                'directory' => 'tt_safira2',
+                'database' => DIR_APPLICATION . '../plazadata/plaza_db2.sql',
+                'title' => 'Layout Organic 2',
+                'preview' => $common_url . 'image/plaza/preview/layout/organic2.jpg'
+            ),
+            array(
+                'skin' => 3,
+                'directory' => 'tt_safira3',
+                'database' => DIR_APPLICATION . '../plazadata/plaza_db3.sql',
+                'title' => 'Layout Organic 3',
+                'preview' => $common_url . 'image/plaza/preview/layout/organic3.jpg'
+            ),
+            array(
+                'skin' => 4,
+                'directory' => 'tt_safira4',
+                'database' => DIR_APPLICATION . '../plazadata/plaza_db4.sql',
+                'title' => 'Layout Organic 4',
+                'preview' => $common_url . 'image/plaza/preview/layout/organic4.jpg'
+            ),
+        );
+
+        $data['headers'] = array(
+            array(
+                'value' => 1,
+                'preview' => $common_url . 'image/plaza/preview/header/organic_header1.jpg'
+            ),
+            array(
+                'value' => 2,
+                'preview' => $common_url . 'image/plaza/preview/header/organic_header2.jpg'
+            ),
+            array(
+                'value' => 3,
+                'preview' => $common_url . 'image/plaza/preview/header/organic_header3.jpg'
+            ),
+            array(
+                'value' => 4,
+                'preview' => $common_url . 'image/plaza/preview/header/organic_header4.jpg'
+            ),
         );
 
         $arrContextOptions = array(
@@ -152,6 +204,18 @@ class ControllerExtensionModulePtcontrolpanel extends Controller
             $data['module_ptcontrolpanel_lazy_load'] = $this->request->post['module_ptcontrolpanel_lazy_load'];
         } else {
             $data['module_ptcontrolpanel_lazy_load'] = $this->config->get('module_ptcontrolpanel_lazy_load');
+        }
+
+        if (isset($this->request->post['module_ptcontrolpanel_minify_js'])) {
+            $data['module_ptcontrolpanel_minify_js'] = $this->request->post['module_ptcontrolpanel_minify_js'];
+        } else {
+            $data['module_ptcontrolpanel_minify_js'] = $this->config->get('module_ptcontrolpanel_minify_js');
+        }
+
+        if (isset($this->request->post['module_ptcontrolpanel_minify_css'])) {
+            $data['module_ptcontrolpanel_minify_css'] = $this->request->post['module_ptcontrolpanel_minify_css'];
+        } else {
+            $data['module_ptcontrolpanel_minify_css'] = $this->config->get('module_ptcontrolpanel_minify_css');
         }
 
         if (isset($this->request->post['module_ptcontrolpanel_header_layout'])) {
@@ -282,19 +346,19 @@ class ControllerExtensionModulePtcontrolpanel extends Controller
         } else {
             $data['module_ptcontrolpanel_button_color'] = $this->config->get('module_ptcontrolpanel_button_color');
         }
-        
+
         if (isset($this->request->post['module_ptcontrolpanel_button_hover_color'])) {
             $data['module_ptcontrolpanel_button_hover_color'] = $this->request->post['module_ptcontrolpanel_button_hover_color'];
         } else {
             $data['module_ptcontrolpanel_button_hover_color'] = $this->config->get('module_ptcontrolpanel_button_hover_color');
         }
-        
+
         if (isset($this->request->post['module_ptcontrolpanel_button_bg_color'])) {
             $data['module_ptcontrolpanel_button_bg_color'] = $this->request->post['module_ptcontrolpanel_button_bg_color'];
         } else {
             $data['module_ptcontrolpanel_button_bg_color'] = $this->config->get('module_ptcontrolpanel_button_bg_color');
         }
-        
+
         if (isset($this->request->post['module_ptcontrolpanel_button_bg_hover_color'])) {
             $data['module_ptcontrolpanel_button_bg_hover_color'] = $this->request->post['module_ptcontrolpanel_button_bg_hover_color'];
         } else {
@@ -314,7 +378,7 @@ class ControllerExtensionModulePtcontrolpanel extends Controller
         } else {
             $data['module_ptcontrolpanel_header_currency'] = $this->config->get('module_ptcontrolpanel_header_currency');
         }
-		
+
         /* Product catalog */
         if (isset($this->request->post['module_ptcontrolpanel_product_price'])) {
             $data['module_ptcontrolpanel_product_price'] = $this->request->post['module_ptcontrolpanel_product_price'];
@@ -449,13 +513,13 @@ class ControllerExtensionModulePtcontrolpanel extends Controller
         } else {
             $data['module_ptcontrolpanel_swatches_height'] = $this->config->get('module_ptcontrolpanel_swatches_height');
         }
-        
+
         if (isset($this->request->post['module_ptcontrolpanel_swatches_option'])) {
             $data['module_ptcontrolpanel_swatches_option'] = $this->request->post['module_ptcontrolpanel_swatches_option'];
         } else {
             $data['module_ptcontrolpanel_swatches_option'] = $this->config->get('module_ptcontrolpanel_swatches_option');
         }
-        
+
         /* Category */
         if (isset($this->request->post['module_ptcontrolpanel_category_image'])) {
             $data['module_ptcontrolpanel_category_image'] = $this->request->post['module_ptcontrolpanel_category_image'];
@@ -694,10 +758,70 @@ class ControllerExtensionModulePtcontrolpanel extends Controller
                 }
             }
 
+            $this->load->model('plaza/controlpanel');
+            $this->model_plaza_controlpanel->refreshModifications();
+
+            $this->cache->delete('cache_folder');
+            $this->cache->delete('cache_mini_js_file_path');
+
+            $directories = glob(DIR_CATALOG . 'view/theme/*', GLOB_ONLYDIR);
+            foreach ($directories as $directory) {
+                $this->cache->delete('cache_mini_css_file_path' . basename($directory));
+            }
+
             $this->session->data['success'] = $this->language->get('text_import_success');
 
             $this->response->redirect($this->url->link('extension/module/ptcontrolpanel', 'user_token=' . $this->session->data['user_token'], true));
         }
+    }
+
+    private function removeFolder($folderName) {
+        $folderHandle = false;
+        if (is_dir($folderName))
+            $folderHandle = opendir($folderName);
+        if (!$folderHandle)
+            return false;
+
+        while($file = readdir($folderHandle)) {
+            if ($file != "." && $file != "..") {
+                if (!is_dir($folderName."/".$file)) {
+                    unlink($folderName."/".$file);
+                }
+                else {
+                    $this->removeFolder($folderName.'/'.$file);
+                }
+            }
+        }
+
+        closedir($folderHandle);
+        rmdir($folderName);
+        return true;
+    }
+
+    public function refreshCache() {
+        $this->load->language('extension/module/ptcontrolpanel');
+
+        try {
+            $this->removeFolder(DIR_SYSTEM . 'theme_cache');
+
+            $this->cache->delete('cache_folder');
+            $this->cache->delete('cache_mini_js_file_path');
+
+            $directories = glob(DIR_CATALOG . 'view/theme/*', GLOB_ONLYDIR);
+            foreach ($directories as $directory) {
+                $this->cache->delete('cache_mini_css_file_path' . basename($directory));
+            }
+
+            $json['result'] = true;
+            $json['success'] = $this->language->get('text_refresh_success');
+        } catch (\Exception $e) {
+            $json['result'] = false;
+            $json['error'] = $this->language->get('text_refresh_error');
+        }
+
+
+        $this->response->addHeader('Content-Type: application/json');
+        $this->response->setOutput(json_encode($json));
     }
 
     public function install() {

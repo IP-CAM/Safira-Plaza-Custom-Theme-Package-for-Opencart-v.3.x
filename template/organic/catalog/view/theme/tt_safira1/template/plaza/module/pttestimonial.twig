@@ -12,7 +12,13 @@
 				{% for testimonial in testimonials %}
                     <div class="swiper-slide">
                         <div class="testimonial-images testimonial-images-{{ i }}">
-                            <a href="javascript:void(0);" onclick="testimonialGoToSlide({{ i }})"><img src="{{ testimonial.image }}" alt="{{ testimonial.customer_name }}"></a>
+                            <a href="javascript:void(0);" onclick="testimonialGoToSlide({{ i }})">
+                                {% if lazy_load %}
+                                    <img class="lazyload" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ testimonial.image }}" alt="{{ testimonial.customer_name }}" />
+                                {% else %}
+                                    <img src="{{ testimonial.image }}" alt="{{ testimonial.customer_name }}" />
+                                {% endif %}
+                            </a>
                         </div>
                     </div>
                     {% set i = i + 1 %}

@@ -58,7 +58,7 @@ class ModelPlazaBlog extends Model
         $this->db->query("DELETE FROM " . DB_PREFIX . "ptpost_related_post WHERE post_id = '" . (int) $post_id . "'");
         $this->db->query("DELETE FROM " . DB_PREFIX . "ptpost_related_post WHERE related_post_id = '" . (int) $post_id . "'");
 
-        if (isset($data['related'])) {
+        if (!empty($data['related'])) {
             foreach ($data['related'] as $related_id) {
                 $this->db->query("INSERT INTO " . DB_PREFIX . "ptpost_related_post SET post_id = '" . (int) $post_id . "', related_post_id = '" . (int) $related_id . "'");
                 $this->db->query("INSERT INTO " . DB_PREFIX . "ptpost_related_post SET related_post_id = '" . (int) $post_id . "', post_id = '" . (int) $related_id . "'");
@@ -258,13 +258,13 @@ class ModelPlazaBlog extends Model
         $this->db->query($sql);
 
         $this->db->query("DELETE FROM " . DB_PREFIX . "ptpost_to_list WHERE post_list_id = '" . (int) $post_list_id . "'");
+		if(!empty($data['post'])){
+			foreach($data['post'] as $post_id) {
+				$sql = "INSERT INTO " . DB_PREFIX . "ptpost_to_list SET post_list_id = '". (int) $post_list_id . "', post_id = '" . (int) $post_id . "'";
 
-        foreach($data['post'] as $post_id) {
-            $sql = "INSERT INTO " . DB_PREFIX . "ptpost_to_list SET post_list_id = '". (int) $post_list_id . "', post_id = '" . (int) $post_id . "'";
-
-            $this->db->query($sql);
-        }
-
+				$this->db->query($sql);
+			}
+		}	
         $this->db->query("DELETE FROM " . DB_PREFIX . "ptpost_list_description WHERE post_list_id = '" . (int) $post_list_id . "'");
 
         $this->db->query("DELETE FROM " . DB_PREFIX . "seo_url WHERE query = 'post_list_id=" . (int) $post_list_id . "'");

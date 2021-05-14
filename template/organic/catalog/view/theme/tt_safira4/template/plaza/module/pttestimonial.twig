@@ -1,33 +1,31 @@
 <div class="testimonial-module">
     <div class="block-title">
         <h3><span>{{ title }}</span></h3>
-		<!-- {% if text_module_testimonial %} -->
-			<!-- <p>{{ text_module_testimonial }}</p> -->
-		<!-- {% endif %} -->
     </div>
     <div class="swiper-viewport">
-		<div class="swiper-container testimonial-slides gallery-top">
-            <div class="swiper-wrapper">
-                {% for testimonial in testimonials %}
+        <div class="swiper-container testimonial-slides gallery-top">
+			<div class="swiper-wrapper">
+                {% set i = 0 %}
+				{% for testimonial in testimonials %}
                     <div class="testimonial-content swiper-slide">
                         <div class="testimonial-box">
-							<div class="testimonial-images testimonial-images-{{ i }}">
-								<a href="javascript:void(0);" onclick="testimonialGoToSlide({{ i }})"><img src="{{ testimonial.image }}" alt="{{ testimonial.customer_name }}"></a>
-							</div>
+                            <div class="testimonial-images testimonial-images-{{ i }}">
+                                <a href="javascript:void(0);" onclick="testimonialGoToSlide({{ i }})">
+                                    {% if lazy_load %}
+                                        <img class="lazyload" src="data:image/svg+xml,%20%3Csvg%20viewBox%3D%220%200%20224%20156%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" data-src="{{ testimonial.image }}" alt="{{ testimonial.customer_name }}" />
+                                    {% else %}
+                                        <img src="{{ testimonial.image }}" alt="{{ testimonial.customer_name }}" />
+                                    {% endif %}
+                                </a>
+                            </div>
                             <p>{{ testimonial.content }}</p>
-							<!-- <div class="rating"> -->
-								<!-- <span class="icon-ratings"><i class="icon-rating icon-rating-x"></i></span> -->
-								<!-- <span class="icon-ratings"><i class="icon-rating icon-rating-x"></i></span> -->
-								<!-- <span class="icon-ratings"><i class="icon-rating icon-rating-x"></i></span> -->
-								<!-- <span class="icon-ratings"><i class="icon-rating icon-rating-x"></i></span> -->
-								<!-- <span class="icon-ratings"><i class="icon-rating icon-rating-x"></i></span> -->
-							<!-- </div> -->
-							<span class="testimonial-author">{{ testimonial.customer_name }}</span>
+                            <span class="testimonial-author">{{ testimonial.customer_name }}</span>
                         </div>
                     </div>
+                    {% set i = i + 1 %}
                 {% endfor %}
-            </div>
-        </div>
+			</div>
+		</div>
         {% if slide.pagination %}
             <div class="swiper-pagination testimonial-pagination"></div>
         {% endif %}
