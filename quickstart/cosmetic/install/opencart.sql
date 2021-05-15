@@ -9482,6 +9482,8 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (31390, 0, 'module_ptcontrolpanel', 'module_ptcontrolpanel_body_font_family_name', '[\"Work Sans\",\"Work Sans\",\"Work Sans\",\"Work Sans\"]', 1),
 (31388, 0, 'module_ptcontrolpanel', 'module_ptcontrolpanel_loader_img', '[\"catalog\\/ajax-loader.gif\",\"catalog\\/ajax-loader.gif\",\"catalog\\/ajax-loader.gif\",\"catalog\\/ajax-loader.gif\"]', 1),
 (31387, 0, 'module_ptcontrolpanel', 'module_ptcontrolpanel_lazy_load', '[\"1\",\"1\",\"1\",\"1\"]', 1),
+(31454, 0, 'module_ptcontrolpanel', 'module_ptcontrolpanel_minify_css', '[\"1\",\"1\",\"1\",\"1\"]', 1),
+(31453, 0, 'module_ptcontrolpanel', 'module_ptcontrolpanel_minify_js', '[\"1\",\"1\",\"1\",\"1\"]', 1),
 (31386, 0, 'module_ptcontrolpanel', 'module_ptcontrolpanel_scroll_top', '[\"1\",\"1\",\"1\",\"1\"]', 1),
 (31385, 0, 'module_ptcontrolpanel', 'module_ptcontrolpanel_sticky_header', '[\"1\",\"1\",\"1\",\"1\"]', 1),
 (31053, 1, 'config', 'config_theme', 'default', 0),
